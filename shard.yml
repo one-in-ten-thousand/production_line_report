@@ -1,0 +1,13 @@
+name: production_line_report
+version: 0.1.0
+
+authors:
+  - Billy.Zheng <vil963@gmail.com>
+
+targets:
+  production_line_report:
+    main: src/production_line_report.cr
+
+crystal: 1.5.0
+
+license: MIT
