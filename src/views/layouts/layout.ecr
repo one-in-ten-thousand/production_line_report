@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= yield_content "title" %>
+    <link rel="stylesheet" href="/materialize/css/materialize.min.css" />
+  </head>
+  <body>
+    <div class="container">
+      <%= content %>
+      <link rel="javascript" href="/materialize/js/materialize.min.js" />
+      <%= yield_content "footer" %>
+    </div>
+  </body>
+</html>
