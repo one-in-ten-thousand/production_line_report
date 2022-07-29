@@ -9,9 +9,9 @@ app_port = ENV["APP_PORT"]? || "8080"
 app_name = ENV["APP_NAME"]? || "magpie_code_admin"
 app_env = ENV["APP_ENV"]? || "development"
 postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
-postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 65432
+postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
 postgres_user = ENV["POSTGRES_USER"]? || "postgres"
-postgres_password = ENV["POSTGRES_PASSWORD"]? || "toor654123"
+postgres_password = ENV["POSTGRES_PASSWORD"]? || "postgres"
 
 p! app_port
 p! app_name
