@@ -41,3 +41,6 @@ Avram.configure do |settings|
 
   settings.lazy_load_enabled = app_env != "production"
 end
+
+require "../../db/migrations/**"
+Avram::Migrator::Runner.new.run_pending_migrations
