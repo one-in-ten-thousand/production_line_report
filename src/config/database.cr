@@ -4,9 +4,10 @@ require "../models/base_model"
 require "../models/**"
 require "../queries/**"
 require "../operations/**"
+require "../../db/migrations/**"
 
-app_port = ENV["APP_PORT"]? || "8080"
-app_name = ENV["APP_NAME"]? || "magpie_code_admin"
+app_port = ENV["APP_PORT"]? || "3000"
+app_name = ENV["APP_NAME"]? || "production_line_report"
 app_env = ENV["APP_ENV"]? || "development"
 postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
 postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
@@ -42,5 +43,6 @@ Avram.configure do |settings|
   settings.lazy_load_enabled = app_env != "production"
 end
 
-require "../../db/migrations/**"
-Avram::Migrator::Runner.new.run_pending_migrations
+if app_env == "production"
+  Avram::Migrator::Runner.new.run_pending_migrations
+end
