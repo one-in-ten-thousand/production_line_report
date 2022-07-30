@@ -2,7 +2,7 @@ version: 2.0
 shards:
   avram:
     git: https://github.com/luckyframework/avram.git
-    version: 0.23.0
+    version: 0.23.0+git.commit.4b1cb28fa704db693dee8503700be13c73611dc5
 
   backtracer:
     git: https://github.com/sija/backtracer.cr.git
@@ -67,6 +67,10 @@ shards:
   splay_tree_map:
     git: https://github.com/wyhaines/splay_tree_map.cr.git
     version: 0.2.2
+
+  teeplate:
+    git: https://github.com/luckyframework/teeplate.git
+    version: 0.8.5
 
   wordsmith:
     git: https://github.com/luckyframework/wordsmith.git
