@@ -14,14 +14,6 @@ postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
 postgres_user = ENV["POSTGRES_USER"]? || "postgres"
 postgres_password = ENV["POSTGRES_PASSWORD"]? || "postgres"
 
-p! app_port
-p! app_name
-p! app_env
-p! postgres_host
-p! postgres_port
-p! postgres_user
-p! postgres_password
-
 class AppDatabase < Avram::Database
 end
 
@@ -35,6 +27,8 @@ AppDatabase.configure do |settings|
       username: postgres_user,
       password: postgres_password
     )
+  p! settings.credentials.database
+  p! settings.credentials.url
 end
 
 Avram.configure do |settings|
