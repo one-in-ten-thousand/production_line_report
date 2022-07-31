@@ -4,7 +4,6 @@ require "../models/base_model"
 require "../models/**"
 require "../queries/**"
 require "../operations/**"
-require "../../db/migrations/**"
 
 app_port = ENV["APP_PORT"]? || "3000"
 app_name = ENV["APP_NAME"]? || "production_line_report"
@@ -43,6 +42,6 @@ Avram.configure do |settings|
   settings.lazy_load_enabled = app_env != "production"
 end
 
-if app_env == "production"
+if app_env == "production" && ENV["LUCKY_TASK"]? != "true"
   Avram::Migrator::Runner.new.run_pending_migrations
 end
