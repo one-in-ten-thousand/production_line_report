@@ -4,15 +4,28 @@ TODO: Write a description here
 
 ## Installation
 
-TODO: Write installation instructions here
+1. Follow [this](https://crystal-lang.org/install/) page install Crystal, after install sucessful, you should run `crystal`, `shards` command sucessful.
+2. [Optional] Follow [this](https://luckyframework.org/guides/getting-started/installing) install lucky command, this step only needed if you want rollback db/migrations etc.
+3. Run `shards` to install dependencies into `./lib`
+4. Start pg server sucessful.
+5. Run `lucky db.create` create database.
 
 ## Usage
 
-TODO: Write usage instructions here
+1. run `shards run` to start server.
+2. Visit `localhost:3000`.
 
-## Development
+## Deployment
 
-TODO: Write development instructions here
+1. For built a static bianry which can be run any linux distro, you must use Docker, more details will add later.
+
+2. For built on ARM device, use following command.
+
+```sh
+crystal build --cross-compile --target arm-linux-gnueabihf src/production_line_report.cr
+```
+
+Then run the generated `cc` command in ARM device.
 
 ## Contributing
 
