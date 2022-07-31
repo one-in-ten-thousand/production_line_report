@@ -4,6 +4,7 @@ require "../models/base_model"
 require "../models/**"
 require "../queries/**"
 require "../operations/**"
+require "../../db/migrations/**"
 
 app_port = ENV["APP_PORT"]? || "3000"
 app_name = ENV["APP_NAME"]? || "production_line_report"
