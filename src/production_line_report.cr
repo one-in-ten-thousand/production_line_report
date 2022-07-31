@@ -1,4 +1,4 @@
-require "./config/**"
+require "./config/*"
 
 private macro render_use_layout(filename)
   render "src/views/{{filename.id}}", "src/views/layouts/layout.ecr"
