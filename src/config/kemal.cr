@@ -11,6 +11,5 @@ class CustomAuthHandler < Kemal::BasicAuth::Handler
 end
 
 Kemal.config do |config|
-  config.public_folder = "src/assets"
   config.auth_handler = CustomAuthHandler
 end

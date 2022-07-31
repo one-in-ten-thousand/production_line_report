@@ -24,6 +24,9 @@ dependencies:
   teeplate:
     github: luckyframework/teeplate
     version: 0.8.5
+  baked_file_system_mounter:
+    github: zw963/baked_file_system_mounter
+    version: 0.3.0
 
 crystal: 1.5.0
 
