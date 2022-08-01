@@ -8,11 +8,13 @@ require "../../db/migrations/**"
 
 app_port = ENV["APP_PORT"]? || "3000"
 app_name = ENV["APP_NAME"]? || "production_line_report"
-app_env = ENV["APP_ENV"]? || "development"
+APP_ENV = ENV["APP_ENV"]? || "development"
 postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
 postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
 postgres_user = ENV["POSTGRES_USER"]? || "postgres"
 postgres_password = ENV["POSTGRES_PASSWORD"]? || "postgres"
+
+
 
 class AppDatabase < Avram::Database
 end
@@ -21,7 +23,7 @@ AppDatabase.configure do |settings|
   settings.credentials =
     Avram::Credentials.parse?(ENV["DATABASE_URL"]?) ||
     Avram::Credentials.new(
-      database: "#{app_name}_#{app_env}",
+      database: "#{app_name}_#{APP_ENV}",
       hostname: postgres_host,
       port: postgres_port,
       username: postgres_user,
@@ -34,7 +36,7 @@ end
 Avram.configure do |settings|
   settings.database_to_migrate = AppDatabase
 
-  settings.lazy_load_enabled = app_env != "production"
+  settings.lazy_load_enabled = APP_ENV != "production"
 end
 
 if ENV["LUCKY_TASK"]? != "true"
