@@ -1,4 +1,4 @@
-<h1>编辑公司</h1>
+<h1>编辑</h1>
 
 <% form_action = path.admin_manufactory_edit.sub(":id", manufactory.id) %>
 <% manufactory_name = manufactory.name %>
@@ -6,3 +6,7 @@
 <%= render_partial "admin/manufactory_form.ecr" %>
 
 <%= link_to "返回", path.admin_manufactory_index %>
+
+<% content_for "title" do %>
+  <title>编辑</title>
+<% end %>

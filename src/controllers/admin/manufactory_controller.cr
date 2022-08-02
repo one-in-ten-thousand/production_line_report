@@ -19,8 +19,10 @@ module Admin::ManufactoryController
       render_admin "admin/manufactories/new.ecr"
     end
     post path.admin_manufactory_new do |env|
+      company = CompanyQuery.new.last
       params = {
-        name: env.params.body["manufactory[name]"].as(String)
+        name: env.params.body["manufactory[name]"].as(String),
+        company_id: company.id
       }
 
       SaveManufactory.create(**params) do |operation, manufactory|
