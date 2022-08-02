@@ -27,5 +27,6 @@ get "/admin" do |env|
 end
 
 include Admin::CompanyController
+include Admin::ManufactoryController
 
 Kemal.run
