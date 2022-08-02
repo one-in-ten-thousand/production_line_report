@@ -1,0 +1,16 @@
+<form action="<%= form_action %>" accept-charset="utf8" method="post">
+  <div class="field">
+    <label for="company_name">公司名称</label>
+    <input id="company_name" type="text" name="company[name]", value="<%= company_name %>" />
+  </div>
+
+  <div style="color: red">
+    <% errors.each do |name, errors| %>
+      <%= name %> <%= errors.join(", ") %><br />
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <input type="submit" value="提交" />
+  </div>
+</form>

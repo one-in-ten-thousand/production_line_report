@@ -1,18 +1,94 @@
 require "./config/*"
 
-private macro render_use_layout(filename)
-  render "src/views/{{filename.id}}", "src/views/layouts/layout.ecr"
+private macro render_admin(filename)
+  render "src/views/{{filename.id}}", "src/views/layouts/admin.ecr"
 end
+
+macro render_partial(filename)
+  render "src/views/partials/{{filename.id}}"
+end
+
+def link_to(title, href)
+  "<a href=\"#{href}\">#{title}</a>"
+end
+
+path = Path.new
 
 basic_auth "admin", "123456"
 
 get "/" do |env|
-  render_use_layout("home.ecr")
+  render_admin("home.ecr")
 end
 
 get "/admin" do |env|
   name = env.kemal_authorized_username?
-  render_use_layout("admin/home.ecr")
+  render_admin "admin/home.ecr"
+end
+
+# 列表页
+get path.admin_company_index do |env|
+  companies = CompanyQuery.new
+  render_admin "admin/companies/index.ecr"
+end
+
+# 详情页
+get path.admin_company do |env|
+  company = CompanyQuery.find(env.params.url["id"])
+  render_admin "admin/companies/show.ecr"
+end
+
+# 新记录
+get path.admin_company_new do |env|
+  errors = {} of Symbol => Array(String)
+
+  render_admin "admin/companies/new.ecr"
+end
+post path.admin_company_new do |env|
+  params = {
+    name: env.params.body["company[name]"].as(String)
+  }
+
+  SaveCompany.create(**params) do |operation, company|
+    if operation.saved?
+      env.redirect path.admin_company_index
+    else
+      errors = operation.errors
+      render_admin "admin/companies/new.ecr"
+    end
+  end
+end
+
+# 编辑
+get path.admin_company_edit do |env|
+  errors = {} of Symbol => Array(String)
+
+  company = CompanyQuery.find(env.params.url["id"])
+
+  render_admin "admin/companies/edit.ecr"
+end
+post path.admin_company_edit do |env|
+  params = {
+    name: env.params.body["company[name]"].as(String)
+  }
+  company = CompanyQuery.find(env.params.url["id"])
+
+  SaveCompany.update(company, **params) do |operation, company|
+    if operation.saved?
+      env.redirect path.admin_company_index
+    else
+      errors = operation.errors
+      render_admin "admin/companies/edit.ecr"
+    end
+  end
+end
+
+# 删除
+get path.admin_company_delete do |env|
+  company = CompanyQuery.find(env.params.url["id"])
+
+  Company::DeleteOperation.delete!(company)
+
+  env.redirect path.admin_company_index
 end
 
 Kemal.run

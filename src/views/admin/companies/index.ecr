@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>工厂名称</th>
+      <th>创建时间</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% companies.each do |company| %>
+      <tr>
+        <td><%= link_to company.name, path.admin_company.sub(":id", company.id) %></td>
+        <td><%= company.create_date %></td>
+
+        <td><%= link_to "编辑", path.admin_company_edit.sub(":id", company.id) %></td>
+        <td><%= link_to "删除", path.admin_company_delete.sub(":id", company.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "新增工厂", path.admin_company_new %>
+
+<% content_for "title" do %>
+  <title>管理后台</title>
+<% end %>
