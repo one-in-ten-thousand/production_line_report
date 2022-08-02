@@ -1,6 +1,6 @@
 <h1>编辑</h1>
 
-<% form_action = path.admin_manufactory_edit.sub(":id", manufactory.id) %>
+<% form_action = path.admin_manufactory_edit_for(manufactory.id) %>
 <% manufactory_name = manufactory.name %>
 
 <%= render_partial "admin/manufactory_form.ecr" %>

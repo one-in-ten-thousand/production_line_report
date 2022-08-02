@@ -8,6 +8,23 @@
   </head>
   <body>
     <div class="container">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12">
+            <a href="<%= path.admin_company_index %>" class="breadcrumb">
+              <span class="<%= env.request.path.starts_with?(path.admin_company_index) ? "light-blue-text" : "" %>">
+                公司列表
+              </span>
+            </a>
+            <a href="<%= path.admin_company_index %>" class="breadcrumb">
+              <span class="<%= env.request.path == path.admin_company_for(yield_content %(company_id)) ? "light-blue-text" : "" %>">
+                <%= yield_content("company_name").presence || "公司"  %>
+              </span>
+            </a>
+            <a href="<%= path.admin_manufactory_index %>" class="breadcrumb"><span class="<%= env.request.path.starts_with?(path.admin_manufactory_index) ? "light-blue-text" : "" %>">工厂列表</span></a>
+          </div>
+        </div>
+      </nav>
       <%= content %>
       <link rel="javascript" href="/materialize/js/materialize.min.js" />
       <%= yield_content "footer" %>

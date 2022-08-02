@@ -8,7 +8,7 @@ module Admin::CompanyController
 
     # 详情页
     get path.admin_company do |env|
-      company = CompanyQuery.find(env.params.url["id"])
+      company = CompanyQuery.find(env.params.url["company_id"])
       render_admin "admin/companies/show.ecr"
     end
 
@@ -37,12 +37,12 @@ module Admin::CompanyController
     get path.admin_company_edit do |env|
       errors = {} of Symbol => Array(String)
 
-      company = CompanyQuery.find(env.params.url["id"])
+      company = CompanyQuery.find(env.params.url["company_id"])
 
       render_admin "admin/companies/edit.ecr"
     end
     post path.admin_company_edit do |env|
-      company = CompanyQuery.find(env.params.url["id"])
+      company = CompanyQuery.find(env.params.url["company_id"])
       params = {
         name: env.params.body["company[name]"].as(String)
       }
@@ -59,7 +59,7 @@ module Admin::CompanyController
 
     # 删除
     get path.admin_company_delete do |env|
-      company = CompanyQuery.find(env.params.url["id"])
+      company = CompanyQuery.find(env.params.url["company_id"])
 
       Company::DeleteOperation.delete!(company)
 

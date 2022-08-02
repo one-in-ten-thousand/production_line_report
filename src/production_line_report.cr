@@ -13,7 +13,7 @@ def link_to(title, href)
   "<a href=\"#{href}\">#{title}</a>"
 end
 
-path = Path.new
+path = RoutePath.new
 
 basic_auth "admin", "123456"
 

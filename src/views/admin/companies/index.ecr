@@ -1,4 +1,4 @@
-<table>
+<table class="highlight centered">
   <thead>
     <tr>
       <th>名称</th>
@@ -10,11 +10,11 @@
   <tbody>
     <% companies.each do |company| %>
       <tr>
-        <td><%= link_to company.name, path.admin_company.sub(":id", company.id) %></td>
+        <td><%= link_to company.name, path.admin_company_for(company.id) %></td>
         <td><%= company.create_date %></td>
 
-        <td><%= link_to "编辑", path.admin_company_edit.sub(":id", company.id) %></td>
-        <td><%= link_to "删除", path.admin_company_delete.sub(":id", company.id) %></td>
+        <td><%= link_to "编辑", path.admin_company_edit_for(company.id) %></td>
+        <td><%= link_to "删除", path.admin_company_delete_for(company.id) %></td>
       </tr>
     <% end %>
   </tbody>

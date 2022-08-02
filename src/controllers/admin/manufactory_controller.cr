@@ -8,7 +8,7 @@ module Admin::ManufactoryController
 
     # 详情页
     get path.admin_manufactory do |env|
-      manufactory = ManufactoryQuery.find(env.params.url["id"])
+      manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
       render_admin "admin/manufactories/show.ecr"
     end
 
@@ -39,12 +39,12 @@ module Admin::ManufactoryController
     get path.admin_manufactory_edit do |env|
       errors = {} of Symbol => Array(String)
 
-      manufactory = ManufactoryQuery.find(env.params.url["id"])
+      manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
 
       render_admin "admin/manufactories/edit.ecr"
     end
     post path.admin_manufactory_edit do |env|
-      manufactory = ManufactoryQuery.find(env.params.url["id"])
+      manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
       params = {
         name: env.params.body["manufactory[name]"].as(String)
       }
@@ -61,7 +61,7 @@ module Admin::ManufactoryController
 
     # 删除
     get path.admin_manufactory_delete do |env|
-      manufactory = ManufactoryQuery.find(env.params.url["id"])
+      manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
 
       Manufactory::DeleteOperation.delete!(manufactory)
 

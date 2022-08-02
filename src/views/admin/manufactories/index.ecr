@@ -10,11 +10,11 @@
   <tbody>
     <% manufactories.each do |manufactory| %>
       <tr>
-        <td><%= link_to manufactory.name, path.admin_manufactory.sub(":id", manufactory.id) %></td>
+        <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory.id) %></td>
         <td><%= manufactory.create_date %></td>
 
-        <td><%= link_to "编辑", path.admin_manufactory_edit.sub(":id", manufactory.id) %></td>
-        <td><%= link_to "删除", path.admin_manufactory_delete.sub(":id", manufactory.id) %></td>
+        <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory.id) %></td>
+        <td><%= link_to "删除", path.admin_manufactory_delete_for(manufactory.id) %></td>
       </tr>
     <% end %>
   </tbody>

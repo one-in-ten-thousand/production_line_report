@@ -1,6 +1,6 @@
 <h1>编辑</h1>
 
-<% form_action = path.admin_company_edit.sub(":id", company.id) %>
+<% form_action = path.admin_company_edit_for(company.id) %>
 <% company_name = company.name %>
 
 <%= render_partial "admin/company_form.ecr" %>
