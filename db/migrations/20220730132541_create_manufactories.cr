@@ -7,6 +7,7 @@ class CreateManufactories::V20220730132541 < Avram::Migrator::Migration::V1
       add_belongs_to company : Company, on_delete: :cascade
       add_timestamps
     end
+    create_index table_for(Manufactory), [:name, :company_id], unique: true
   end
 
   def rollback

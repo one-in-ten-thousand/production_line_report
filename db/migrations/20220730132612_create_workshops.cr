@@ -8,6 +8,7 @@ class CreateWorkshops::V20220730132612 < Avram::Migrator::Migration::V1
       add_belongs_to manufactory : Manufactory, on_delete: :cascade
       add_timestamps
     end
+    create_index table_for(Workshop), [:name, :manufactory_id], unique: true
   end
 
   def rollback

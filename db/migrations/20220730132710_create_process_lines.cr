@@ -9,6 +9,7 @@ class CreateProcessLines::V20220730132710 < Avram::Migrator::Migration::V1
       add_belongs_to workshop : Workshop, on_delete: :cascade
       add_timestamps
     end
+    create_index table_for(ProcessLine), [:name, :workshop_id], unique: true
   end
 
   def rollback
