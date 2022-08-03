@@ -9,12 +9,14 @@ module Admin::CompanyController
     # 详情页
     get path.admin_company do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
+      manufactories = company.manufactories
       render_admin "admin/companies/show.ecr"
     end
 
     # 新记录
     get path.admin_company_new do |env|
       errors = {} of Symbol => Array(String)
+      company = SaveCompany.new
 
       render_admin "admin/companies/new.ecr"
     end
@@ -23,11 +25,12 @@ module Admin::CompanyController
         name: env.params.body["company[name]"].as(String)
       }
 
-      SaveCompany.create(**params) do |operation, company|
+      SaveCompany.create(**params) do |operation, _|
         if operation.saved?
           env.redirect path.admin_company_index
         else
           errors = operation.errors
+          company = SaveCompany.new
           render_admin "admin/companies/new.ecr"
         end
       end
@@ -36,22 +39,22 @@ module Admin::CompanyController
     # 编辑
     get path.admin_company_edit do |env|
       errors = {} of Symbol => Array(String)
-
-      company = CompanyQuery.find(env.params.url["company_id"])
+      company = SaveCompany.new(CompanyQuery.find(env.params.url["company_id"]))
 
       render_admin "admin/companies/edit.ecr"
     end
     post path.admin_company_edit do |env|
-      company = CompanyQuery.find(env.params.url["company_id"])
+      company_object = CompanyQuery.find(env.params.url["company_id"])
       params = {
         name: env.params.body["company[name]"].as(String)
       }
 
-      SaveCompany.update(company, **params) do |operation, company|
+      SaveCompany.update(company_object, **params) do |operation, _|
         if operation.saved?
           env.redirect path.admin_company_index
         else
           errors = operation.errors
+          company = SaveCompany.new(company_object)
           render_admin "admin/companies/edit.ecr"
         end
       end

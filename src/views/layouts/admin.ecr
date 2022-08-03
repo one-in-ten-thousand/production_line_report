@@ -12,16 +12,20 @@
         <div class="nav-wrapper">
           <div class="col s12">
             <a href="<%= path.admin_company_index %>" class="breadcrumb">
-              <span class="<%= env.request.path.starts_with?(path.admin_company_index) ? "light-blue-text" : "" %>">
+              <span class="<%= env.request.path == path.admin_company_index ? "light-blue-text" : "" %>">
                 公司列表
               </span>
             </a>
-            <a href="<%= path.admin_company_index %>" class="breadcrumb">
-              <span class="<%= env.request.path == path.admin_company_for(yield_content %(company_id)) ? "light-blue-text" : "" %>">
+            <% company_path = path.admin_company_for(yield_content(%(company_id)).try &.strip) %>
+            <a href="<%= company_path %>" class="breadcrumb">
+              <span class="<%= env.request.path.starts_with?(company_path) ? "light-blue-text" : "" %>">
                 <%= yield_content("company_name").presence || "公司"  %>
               </span>
             </a>
-            <a href="<%= path.admin_manufactory_index %>" class="breadcrumb"><span class="<%= env.request.path.starts_with?(path.admin_manufactory_index) ? "light-blue-text" : "" %>">工厂列表</span></a>
+            <% p! env.request.path == path.admin_manufactory_index %>
+            <a href="<%= path.admin_manufactory_index %>" class="breadcrumb"><span class="<%= (env.request.path == path.admin_manufactory_index) ? "light-blue-text" : "" %>">
+              工厂列表</span>
+            </a>
           </div>
         </div>
       </nav>

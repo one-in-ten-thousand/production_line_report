@@ -1,11 +1,36 @@
 <h1><%= company.name %></h1>
 
-<%= link_to "编辑", path.admin_company_edit %> |
-<%= link_to "返回", path.admin_company_index %>
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>创建时间</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% manufactories.each do |manufactory| %>
+      <tr>
+        <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory.id) %></td>
+        <td><%= manufactory.create_date %></td>
+
+        <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory.id) %></td>
+        <td><%= link_to "删除", path.admin_manufactory_delete_for(manufactory.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "新增", path.admin_manufactory_new %>
 
 <% content_for "title" do %>
-  <title>详情</title>
+  <title>列表</title>
 <% end %>
+
+<%= link_to "返回", path.admin_company_index %>
 
 <% content_for "company_id" do %>
   <%= company.id %>
