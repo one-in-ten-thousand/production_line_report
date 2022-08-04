@@ -37,7 +37,6 @@ macro create_crud_path(singular_name, plural_name, namespace="", nested="")
 
       result
     end
-    \{% debug %}
   end
 
 macro generate_nested_method(path, nested_ids)
@@ -61,7 +60,6 @@ macro generate_nested_method(path, nested_ids)
 
       result
     end
-    \{% debug %}
   end
 
 
@@ -89,11 +87,11 @@ macro generate_nested_method(path, nested_ids)
 
   getter {{n1.id}}_delete = "/{{n2.id}}/:{{singular_name.id}}_id/delete"
   generate_url_method {{n1.id}}_delete, {{nested_ids.id}}
-  {% debug %}
 end
 
 struct RoutePath
   create_crud_path("company", "companies", "admin")
   create_crud_path("manufactory", "manufactories", "admin", "companies/:company_id")
   create_crud_path("workshop", "workshops", "admin", "companies/:company_id/manufactories/:manufactory_id")
+  create_crud_path("process_line", "process_lines", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id")
 end
