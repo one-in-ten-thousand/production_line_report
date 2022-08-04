@@ -27,6 +27,8 @@ dependencies:
   baked_file_system_mounter:
     github: zw963/baked_file_system_mounter
     version: 0.4.0
+  graphql:
+    github: graphql-crystal/graphql
 
 crystal: 1.5.0
 

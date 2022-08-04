@@ -32,6 +32,10 @@ shards:
     git: https://github.com/crystal-loot/exception_page.git
     version: 0.2.2
 
+  graphql:
+    git: https://github.com/graphql-crystal/graphql.git
+    version: 0.4.0
+
   habitat:
     git: https://github.com/luckyframework/habitat.git
     version: 0.4.7
