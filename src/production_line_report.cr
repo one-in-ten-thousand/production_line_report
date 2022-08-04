@@ -1,4 +1,5 @@
 require "./config/*"
+require "./graphql/query_type"
 require "./controllers/**"
 
 private macro render_admin(filename)
@@ -15,7 +16,7 @@ end
 
 path = RoutePath.new
 
-basic_auth "admin", "123456"
+basic_auth BASIC_AUTH_USERNAME, BASIC_AUTH_PASSWORD
 
 get "/" do |env|
   render_admin("home.ecr")
@@ -30,5 +31,6 @@ include Admin::CompanyController
 include Admin::ManufactoryController
 include Admin::WorkshopController
 include Admin::ProcessLineController
+include GraphqlController
 
 Kemal.run

@@ -1,6 +1,9 @@
 require "kemal"
 require "kemal-basic-auth"
 
+BASIC_AUTH_USERNAME = ENV["BASIC_AUTH_USERNAME"]? || "admin"
+BASIC_AUTH_PASSWORD = ENV["BASIC_AUTH_PASSWORD"]? || "123456"
+
 class CustomAuthHandler < Kemal::BasicAuth::Handler
   exclude ["/"]
 
