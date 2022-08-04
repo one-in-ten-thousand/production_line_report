@@ -79,7 +79,7 @@ module Admin::ProcessLineController
     end
 
     # 删除
-    get path.admin_process_line_delete do |env|
+    post path.admin_process_line_delete do |env|
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
       manufactory = workshop.manufactory
       company = manufactory.company

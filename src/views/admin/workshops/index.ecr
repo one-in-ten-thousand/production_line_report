@@ -16,7 +16,7 @@
         <td><%= workshop.create_date %></td>
 
         <td><%= link_to "编辑", path.admin_workshop_edit_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
-        <td><%= link_to "删除", path.admin_workshop_delete_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
+        <td><a class="modal-trigger" href="#modal1" data-url="<%= path.admin_workshop_delete_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %>">删除</a></td>
       </tr>
     <% end %>
   </tbody>

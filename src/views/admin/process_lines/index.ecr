@@ -14,7 +14,7 @@
         <td><%= process_line.create_date %></td>
 
         <td><%= link_to "编辑", path.admin_process_line_edit_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
-        <td><%= link_to "删除", path.admin_process_line_delete_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
+        <td><a class="modal-trigger" href="#modal1" data-url="<%= path.admin_process_line_delete_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>">删除</a></td>
       </tr>
     <% end %>
   </tbody>

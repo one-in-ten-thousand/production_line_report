@@ -1,0 +1,28 @@
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>确认操作！</h4>
+    <p>这同时会删除所有下一级的单位，确认要删除吗？</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">取消</a>
+    <a href="#!" id="confirm_delete" class="modal-close waves-effect waves-red btn-flat">确认</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', function() {
+    var callback = function (_, trigger) {
+      document.getElementById('confirm_delete').onclick = function () {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open("POST", trigger.dataset.url, false);
+        xhttp.send();
+        location.reload();
+        return false;
+      }
+    };
+
+    var elems = document.querySelectorAll('.modal');
+    M.Modal.init(elems, {"onOpenStart": callback});
+  });
+</script>

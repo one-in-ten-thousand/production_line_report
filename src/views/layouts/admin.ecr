@@ -57,24 +57,7 @@
       <%= content %>
       <script type=text/javascript src="/materialize/js/materialize.min.js"></script>
       <%= yield_content "footer" %>
-
-      <!-- Modal Structure -->
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>确认操作！</h4>
-          <p>这同时会删除所有下一级的实体，确认要删除吗？</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">取消</a>
-          <a href="#!" class="modal-close waves-effect waves-red btn-flat">确认</a>
-        </div>
-      </div>
-
-      <script type="text/javascript">
-        document.addEventListener('DOMContentLoaded', function() {
-          M.AutoInit();
-        });
-      </script>
+      <%= render "src/views/partials/confirm_delete_dialog.ecr" %>
     </div>
   </body>
 </html>
