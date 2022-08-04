@@ -1,0 +1,19 @@
+<h1><%= workshop.name %></h1>
+
+<%= link_to "返回", path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %>
+
+<% content_for "title" do %>
+  <title>详情</title>
+<% end %>
+
+<% content_for "company_name" do %>
+  <%= company.name %>
+<% end %>
+
+<% content_for "manufactory_name" do %>
+  <%= manufactory.name %>
+<% end %>
+
+<% content_for "workshop_name" do %>
+  <%= workshop.name %>
+<% end %>

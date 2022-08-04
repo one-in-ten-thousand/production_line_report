@@ -1,7 +1,6 @@
 <h1>新增</h1>
 
-<% http_method = "post"; form_action = path.admin_manufactory_new_for(company_id: company.id) %>
-<% manufactory_name = nil %>
+<% form_action = path.admin_manufactory_new_for(company_id: company.id) %>
 <%= render_partial "admin/manufactory_form.ecr" %>
 
 <%= link_to "返回", path.admin_company_for(company_id: company.id) %>

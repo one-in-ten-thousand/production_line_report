@@ -11,6 +11,7 @@ module Admin::ManufactoryController
     get path.admin_manufactory do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
+      workshops = manufactory.workshops
       render_admin "admin/manufactories/show.ecr"
     end
 

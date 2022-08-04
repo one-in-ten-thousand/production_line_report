@@ -28,5 +28,6 @@ end
 
 include Admin::CompanyController
 include Admin::ManufactoryController
+include Admin::WorkshopController
 
 Kemal.run

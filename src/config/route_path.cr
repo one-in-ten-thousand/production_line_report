@@ -95,4 +95,5 @@ end
 struct RoutePath
   create_crud_path("company", "companies", "admin")
   create_crud_path("manufactory", "manufactories", "admin", "companies/:company_id")
+  create_crud_path("workshop", "workshops", "admin", "companies/:company_id/manufactories/:manufactory_id")
 end

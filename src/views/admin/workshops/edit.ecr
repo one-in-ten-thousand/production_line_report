@@ -1,0 +1,22 @@
+<h1>编辑</h1>
+
+<% form_action = path.admin_workshop_edit_for(workshop_id: operation.id.value, manufactory_id: manufactory.id, company_id: company.id) %>
+<%= render_partial "admin/workshop_form.ecr" %>
+
+<%= link_to "返回", path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %>
+
+<% content_for "title" do %>
+  <title>编辑</title>
+<% end %>
+
+<% content_for "company_name" do %>
+  <%= company.name %>
+<% end %>
+
+<% content_for "manufactory_name" do %>
+  <%= manufactory.name %>
+<% end %>
+
+<% content_for "workshop_name" do %>
+  <%= operation.name.value %>
+<% end %>
