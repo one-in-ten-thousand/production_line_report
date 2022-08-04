@@ -12,26 +12,51 @@
         <div class="nav-wrapper">
           <div class="col s12">
             <a href="<%= path.admin_company_index %>" class="breadcrumb">
-              <span class="<%= env.request.path == path.admin_company_index ? "light-blue-text" : "" %>">
+              <span class="<%= env.request.path == path.admin_company_index ? "black-text" : "" %>">
                 公司列表
               </span>
             </a>
-            <% company_path = path.admin_company_for(yield_content(%(company_id)).try &.strip) %>
-            <a href="<%= company_path %>" class="breadcrumb">
-              <span class="<%= env.request.path.starts_with?(company_path) ? "light-blue-text" : "" %>">
-                <%= yield_content("company_name").presence || "公司"  %>
-              </span>
-            </a>
-            <% p! env.request.path == path.admin_manufactory_index %>
-            <a href="<%= path.admin_manufactory_index %>" class="breadcrumb"><span class="<%= (env.request.path == path.admin_manufactory_index) ? "light-blue-text" : "" %>">
-              工厂列表</span>
-            </a>
+            <% company_path = path.admin_company_for(company_id: env.params.url["company_id"]?) %>
+            <% if env.request.path.starts_with? company_path %>
+              <a href="<%= company_path %>" class="breadcrumb">
+                <span class="<%= env.request.path == company_path ? "black-text" : "" %>">
+                  <%= yield_content("company_name")  %>
+                </span>
+              </a>
+            <% end %>
+
+            <% manufactory_path = path.admin_manufactory_for(manufactory_id: env.params.url["manufactory_id"]?, company_id: env.params.url["company_id"]?) %>
+            <% if env.request.path.starts_with? manufactory_path %>
+              <a href="<%= manufactory_path %>" class="breadcrumb">
+                <span class="<%= env.request.path == manufactory_path ? "black-text" : "" %>">
+                  <%= yield_content("manufactory_name")  %>
+                </span>
+              </a>
+            <% end %>
           </div>
         </div>
       </nav>
       <%= content %>
-      <link rel="javascript" href="/materialize/js/materialize.min.js" />
+      <script type=text/javascript src="/materialize/js/materialize.min.js"></script>
       <%= yield_content "footer" %>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>确认操作！</h4>
+          <p>这同时会删除所有下一级的实体，确认要删除吗？</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat">取消</a>
+          <a href="#!" class="modal-close waves-effect waves-red btn-flat">确认</a>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+          M.AutoInit();
+        });
+      </script>
     </div>
   </body>
 </html>

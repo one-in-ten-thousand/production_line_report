@@ -10,11 +10,11 @@
   <tbody>
     <% manufactories.each do |manufactory| %>
       <tr>
-        <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory.id) %></td>
+        <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td><%= manufactory.create_date %></td>
 
-        <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory.id) %></td>
-        <td><%= link_to "删除", path.admin_manufactory_delete_for(manufactory.id) %></td>
+        <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
+        <td><%= link_to "删除", path.admin_manufactory_delete_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -22,7 +22,8 @@
 
 <br>
 
-<%= link_to "新增", path.admin_manufactory_new %>
+<%= link_to "新增", path.admin_manufactory_new_for(company_id: company.id) %>
+<%= link_to "返回", path.admin_company_for(company_id: company.id) %>
 
 <% content_for "title" do %>
   <title>列表</title>

@@ -10,11 +10,12 @@
   <tbody>
     <% companies.each do |company| %>
       <tr>
-        <td><%= link_to company.name, path.admin_company_for(company.id) %></td>
+        <td><%= link_to company.name, path.admin_company_for(company_id: company.id) %></td>
         <td><%= company.create_date %></td>
 
-        <td><%= link_to "编辑", path.admin_company_edit_for(company.id) %></td>
-        <td><%= link_to "删除", path.admin_company_delete_for(company.id) %></td>
+        <td><%= link_to "编辑", path.admin_company_edit_for(company_id: company.id) %></td>
+        <td><%= link_to "删除", path.admin_company_delete_for(company_id: company.id) %></td>
+
       </tr>
     <% end %>
   </tbody>

@@ -1,11 +1,19 @@
 <h1>新增</h1>
 
-<% http_method = "post"; form_action = path.admin_manufactory_new %>
+<% http_method = "post"; form_action = path.admin_manufactory_new_for(company_id: company.id) %>
 <% manufactory_name = nil %>
 <%= render_partial "admin/manufactory_form.ecr" %>
 
-<%= link_to "返回", path.admin_manufactory_index %>
+<%= link_to "返回", path.admin_company_for(company_id: company.id) %>
 
 <% content_for "title" do %>
   <title>新增</title>
+<% end %>
+
+<% content_for "company_name" do %>
+  <%= company.name %>
+<% end %>
+
+<% content_for "manufactory_name" do %>
+  <%= "新的工厂" %>
 <% end %>
