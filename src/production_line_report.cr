@@ -29,5 +29,6 @@ end
 include Admin::CompanyController
 include Admin::ManufactoryController
 include Admin::WorkshopController
+include Admin::ProcessLineController
 
 Kemal.run

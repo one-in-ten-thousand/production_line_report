@@ -33,6 +33,24 @@
                 </span>
               </a>
             <% end %>
+
+            <% workshop_path = path.admin_workshop_for(workshop_id: env.params.url["workshop_id"]?, manufactory_id: env.params.url["manufactory_id"]?, company_id: env.params.url["company_id"]?) %>
+            <% if env.request.path.starts_with? workshop_path %>
+              <a href="<%= workshop_path %>" class="breadcrumb">
+                <span class="<%= env.request.path == workshop_path ? "black-text" : "" %>">
+                  <%= yield_content("workshop_name")  %>
+                </span>
+              </a>
+            <% end %>
+
+            <% process_line_path = path.admin_process_line_for(process_line_id: env.params.url["process_line_id"]?, workshop_id: env.params.url["workshop_id"]?, manufactory_id: env.params.url["manufactory_id"]?, company_id: env.params.url["company_id"]?) %>
+            <% if env.request.path.starts_with? process_line_path %>
+              <a href="<%= process_line_path %>" class="breadcrumb">
+                <span class="<%= env.request.path == process_line_path ? "black-text" : "" %>">
+                  <%= yield_content("process_line_name")  %>
+                </span>
+              </a>
+            <% end %>
           </div>
         </div>
       </nav>

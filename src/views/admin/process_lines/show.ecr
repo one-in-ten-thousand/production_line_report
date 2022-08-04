@@ -1,8 +1,6 @@
-<h1><%= workshop.name %></h1>
+<h1><%= process_line.name %></h1>
 
-<%= render "src/views/admin/process_lines/index.ecr" %>
-
-<%= link_to "返回", path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %>
+<%= link_to "返回", path.admin_workshop_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>
 
 <% content_for "title" do %>
   <title>详情</title>
@@ -18,4 +16,8 @@
 
 <% content_for "workshop_name" do %>
   <%= workshop.name %>
+<% end %>
+
+<% content_for "process_line_name" do %>
+  <%= process_line.name %>
 <% end %>

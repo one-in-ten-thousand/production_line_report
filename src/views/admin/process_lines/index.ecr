@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>创建时间</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% process_lines.each do |process_line| %>
+      <tr>
+        <td><%= link_to process_line.name, path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
+        <td><%= process_line.create_date %></td>
+
+        <td><%= link_to "编辑", path.admin_process_line_edit_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
+        <td><%= link_to "删除", path.admin_process_line_delete_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "新增", path.admin_process_line_new_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>

@@ -13,6 +13,7 @@ module Admin::WorkshopController
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
       company = manufactory.company
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
+      process_lines = workshop.process_lines
       render_admin "admin/workshops/show.ecr"
     end
 

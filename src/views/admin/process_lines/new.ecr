@@ -1,0 +1,26 @@
+<h1>新增</h1>
+
+<% form_action = path.admin_process_line_new_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>
+<%= render_partial "admin/process_line_form.ecr" %>
+
+<%= link_to "返回", path.admin_workshop_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>
+
+<% content_for "title" do %>
+  <title>新增</title>
+<% end %>
+
+<% content_for "company_name" do %>
+  <%= company.name %>
+<% end %>
+
+<% content_for "manufactory_name" do %>
+  <%= manufactory.name %>
+<% end %>
+
+<% content_for "workshop_name" do %>
+  <%= workshop.name %>
+<% end %>
+
+<% content_for "process_line_name" do %>
+  <%= "新的生产线" %>
+<% end %>
