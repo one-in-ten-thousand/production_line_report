@@ -59,7 +59,7 @@ module Admin::CompanyController
     end
 
     # 删除
-    post path.admin_company_delete do |env|
+    delete path.admin_company_delete do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
 
       Company::DeleteOperation.delete!(company)

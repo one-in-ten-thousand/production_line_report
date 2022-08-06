@@ -73,7 +73,7 @@ module Admin::WorkshopController
     end
 
     # 删除
-    post path.admin_workshop_delete do |env|
+    delete path.admin_workshop_delete do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
       company = manufactory.company
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])

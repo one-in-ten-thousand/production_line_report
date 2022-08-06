@@ -3,7 +3,7 @@
     <tr>
       <th>名称</th>
       <th>创建时间</th>
-      <th colspan="3"></th>
+      <th colspan="2"></th>
     </tr>
   </thead>
 
@@ -14,7 +14,16 @@
         <td><%= manufactory.create_date %></td>
 
         <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
-        <td><a class="modal-trigger" href="#modal1" data-url="<%= path.admin_manufactory_delete_for(manufactory_id: manufactory.id, company_id: company.id) %>">删除</a></td>
+        <td>
+          <a
+            class="modal-trigger"
+            href="#modal1"
+            data-url="<%= path.admin_manufactory_delete_for(manufactory_id: manufactory.id, company_id: company.id) %>"
+            data-content="删除工厂 <%= manufactory.name %> 同时会删除下属的车间、生产线，确认？"
+          >
+            删除
+          </a>
+        </td>
       </tr>
     <% end %>
   </tbody>
