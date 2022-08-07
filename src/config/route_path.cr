@@ -1,4 +1,4 @@
-macro create_crud_path(singular_name, plural_name, namespace="", nested="")
+macro create_crud_path(singular_name, plural_name, namespace = "", nested = "")
   {% if namespace == "" %}
     {% sep1 = "" %}
     {% sep2 = "" %}
