@@ -27,6 +27,11 @@ get "/admin" do |env|
   render_admin "admin/home.ecr"
 end
 
+post "/" do |env|
+  name = env.kemal_authorized_username?
+  render_admin "admin/home.ecr"
+end
+
 include Admin::CompanyController
 include Admin::ManufactoryController
 include Admin::WorkshopController

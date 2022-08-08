@@ -5,5 +5,7 @@ class ProcessLine < BaseModel
     belongs_to company : Company
     belongs_to manufactory : Manufactory
     belongs_to workshop : Workshop
+
+    has_many reports : Report
   end
 end

@@ -38,7 +38,7 @@ class Db::Seed::SampleData < LuckyTask::Task
       end
     end.flatten
 
-    workshops.map do |workshop|
+    process_lines = workshops.map do |workshop|
       Array.new(rand(2..5)) do
         ProcessLineFactory.create do |e|
           e.company_id workshop.manufactory.company.id
@@ -47,6 +47,17 @@ class Db::Seed::SampleData < LuckyTask::Task
         end
       end
     end.flatten
+
+    process_lines.each do |process_line|
+      Array.new(rand(2..5)) do
+        ReportFactory.create do |e|
+          e.company_id process_line.workshop.manufactory.company.id
+          e.manufactory_id process_line.workshop.manufactory.id
+          e.workshop_id process_line.workshop.id
+          e.process_line_id process_line.id
+        end
+      end
+    end
 
     puts "Done adding sample data"
   end
