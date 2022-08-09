@@ -1,5 +1,7 @@
 <h1><%= process_line.name %></h1>
 
+<%= render "src/views/admin/reports/index.ecr" %>
+
 <%= link_to "返回", path.admin_workshop_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>
 
 <% content_for "title" do %>

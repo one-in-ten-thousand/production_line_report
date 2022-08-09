@@ -48,13 +48,21 @@ class Db::Seed::SampleData < LuckyTask::Task
       end
     end.flatten
 
-    process_lines.each do |process_line|
+    reports = process_lines.map do |process_line|
       Array.new(rand(2..5)) do
-        ReportFactory.create do |e|
-          e.company_id process_line.workshop.manufactory.company.id
-          e.manufactory_id process_line.workshop.manufactory.id
-          e.workshop_id process_line.workshop.id
-          e.process_line_id process_line.id
+        ReportFactory.create do |report|
+          report.company_id process_line.workshop.manufactory.company.id
+          report.manufactory_id process_line.workshop.manufactory.id
+          report.workshop_id process_line.workshop.id
+          report.process_line_id process_line.id
+        end
+      end
+    end.flatten
+
+    unqualifed_products = reports.map do |report|
+      Array.new(rand(5..10)) do
+        UnqualifiedProductFactory.create do |e|
+          e.report_id report.id
         end
       end
     end

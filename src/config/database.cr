@@ -37,6 +37,6 @@ Avram.configure do |settings|
   settings.lazy_load_enabled = APP_ENV != "production"
 end
 
-if ENV["LUCKY_TASK"]? != "true" && APP_ENV == "production"
+if ENV["LUCKY_TASK"]? != "true" && ["production", "test"].includes? APP_ENV
   Avram::Migrator::Runner.new.run_pending_migrations
 end

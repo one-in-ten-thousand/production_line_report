@@ -36,6 +36,7 @@ include Admin::CompanyController
 include Admin::ManufactoryController
 include Admin::WorkshopController
 include Admin::ProcessLineController
+include Admin::ReportController
 include GraphqlController
 
 Kemal.run

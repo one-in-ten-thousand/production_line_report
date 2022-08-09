@@ -9,8 +9,6 @@
 
   <tbody>
     <% workshops.each do |workshop| %>
-      <% manufactory = workshop.manufactory %>
-      <% company = manufactory.company %>
       <tr>
         <td><%= link_to workshop.name, path.admin_workshop_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td><%= workshop.create_date %></td>

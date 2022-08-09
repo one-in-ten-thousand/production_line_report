@@ -1,0 +1,38 @@
+<h2>报告数量：<%= reports.size %></h2>
+
+<h2>最后 5 个报告</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>报告日期</th>
+      <th>目标产量</th>
+      <th>车缝数</th>
+      <th>良品数</th>
+      <th>不合格记录数量</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% reports.each do |report| %>
+      <tr>
+        <td><%= report.report_date %></td>
+        <td><%= report.target_total_count %></td>
+        <td><%= report.processed_total_count %></td>
+        <td><%= report.qualified_total_count %></td>
+        <td><%= report.unqualified_products.size %></td>
+        <td>
+          <a
+            class="modal-trigger"
+            href="#modal1"
+            data-url="<%= path.admin_report_delete_for(report_id: report.id, process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>"
+            data-content="删除报告数据，日期: <%= report.report_date %>，确认？"
+          >
+            删除
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
