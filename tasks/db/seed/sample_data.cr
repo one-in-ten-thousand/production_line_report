@@ -51,9 +51,9 @@ class Db::Seed::SampleData < LuckyTask::Task
       end
     end.flatten
 
-    unqualified_products = reports.map do |report|
+    products = reports.map do |report|
       Array.new(rand(5..10)) do
-        UnqualifiedProductFactory.create &.report_id(report.id)
+        ProductFactory.create &.report_id(report.id)
       end
     end
 

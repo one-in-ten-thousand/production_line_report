@@ -101,5 +101,5 @@ struct RoutePath
   create_crud_path("workshop", "workshops", "admin", "companies/:company_id/manufactories/:manufactory_id")
   create_crud_path("process_line", "process_lines", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id")
   create_crud_path("report", "reports", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id/process_lines/:process_line_id")
-  create_crud_path("unqualified_product", "unqualified_products", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id/process_lines/:process_line_id/reports/:report_id")
+  create_crud_path("product", "products", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id/process_lines/:process_line_id/reports/:report_id")
 end

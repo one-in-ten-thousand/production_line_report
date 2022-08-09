@@ -1,11 +1,13 @@
-class UnqualifiedProduct < BaseModel
+class Product < BaseModel
   enum Place
+    None
     Ling_Zi
     Xiu_Zi
     Qian_Pian
 
     def display_name
       {
+        None:      "无",
         Ling_Zi:   "领子",
         Xiu_Zi:    "袖子",
         Qian_Pian: "前片",
@@ -14,6 +16,7 @@ class UnqualifiedProduct < BaseModel
   end
 
   enum Reason
+    None
     Bu_Qi
     Qi_Mao
     Se_Cha
@@ -21,6 +24,7 @@ class UnqualifiedProduct < BaseModel
 
     def display_name
       {
+        None:   "无",
         Bu_Qi:  "不齐",
         Qi_Mao: "起毛",
         Se_Cha: "色差",
@@ -31,8 +35,8 @@ class UnqualifiedProduct < BaseModel
 
   table do
     column name : String
-    column place : UnqualifiedProduct::Place
-    column reason : UnqualifiedProduct::Reason
+    column place : Product::Place
+    column reason : Product::Reason
     belongs_to report : Report
   end
 end

@@ -8,7 +8,7 @@ class Report < BaseModel
     column report_month_num : Int32
     column report_week_num : Int32
 
-    has_many unqualified_products : UnqualifiedProduct
+    has_many products : Product
     belongs_to process_line : ProcessLine
     belongs_to workshop : Workshop
     belongs_to manufactory : Manufactory

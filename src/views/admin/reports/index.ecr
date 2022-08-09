@@ -21,7 +21,7 @@
         <td><%= report.target_total_count %></td>
         <td><%= report.processed_total_count %></td>
         <td><%= report.qualified_total_count %></td>
-        <td><%= link_to report.unqualified_products.size, path.admin_unqualified_product_index_for(report_id: report.id, process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)  %></td>
+        <td><%= link_to report.products.size, path.admin_product_index_for(report_id: report.id, process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)  %></td>
         <td>
           <a
             class="modal-trigger"

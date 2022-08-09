@@ -9,7 +9,7 @@
   </thead>
 
   <tbody>
-    <% unqualified_products.each do |product| %>
+    <% products.each do |product| %>
       <tr>
         <td><%= product.name %></td>
         <td><%= product.place.display_name %></td>
@@ -18,7 +18,7 @@
           <a
             class="modal-trigger"
             href="#modal1"
-            data-url="<%= path.admin_unqualified_product_delete_for(unqualified_product_id: product.id) %>"
+            data-url="<%= path.admin_product_delete_for(product_id: product.id) %>"
             data-content="删除产品数据，<%= product.place.display_name %>, <%= product.reason.display_name %> ，确认？"
           >
             删除

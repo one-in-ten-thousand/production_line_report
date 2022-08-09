@@ -8,4 +8,8 @@ class ProcessLine < BaseModel
 
     has_many reports : Report
   end
+
+  def qualified_rate
+
+  end
 end
