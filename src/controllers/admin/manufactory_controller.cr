@@ -67,12 +67,9 @@ module Admin::ManufactoryController
 
     # 删除
     delete path.admin_manufactory_delete do |env|
-      company = CompanyQuery.find(env.params.url["company_id"])
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
 
       Manufactory::DeleteOperation.delete!(manufactory)
-
-      env.redirect path.admin_company_for(company_id: company.id)
     end
   end
 end

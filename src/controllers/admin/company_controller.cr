@@ -63,8 +63,6 @@ module Admin::CompanyController
       company = CompanyQuery.find(env.params.url["company_id"])
 
       Company::DeleteOperation.delete!(company)
-
-      env.redirect path.admin_company_index
     end
   end
 end

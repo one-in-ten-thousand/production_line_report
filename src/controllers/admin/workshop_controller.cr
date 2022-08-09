@@ -74,13 +74,9 @@ module Admin::WorkshopController
 
     # 删除
     delete path.admin_workshop_delete do |env|
-      manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
 
       Workshop::DeleteOperation.delete!(workshop)
-
-      env.redirect path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id)
     end
   end
 end

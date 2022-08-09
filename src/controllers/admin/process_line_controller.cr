@@ -15,6 +15,7 @@ module Admin::ProcessLineController
       manufactory = workshop.manufactory
       company = manufactory.company
       process_line = ProcessLineQuery.find(env.params.url["process_line_id"])
+      reports = process_line.reports
       render_admin "admin/process_lines/show.ecr"
     end
 
@@ -80,14 +81,9 @@ module Admin::ProcessLineController
 
     # 删除
     delete path.admin_process_line_delete do |env|
-      workshop = WorkshopQuery.find(env.params.url["workshop_id"])
-      manufactory = workshop.manufactory
-      company = manufactory.company
       process_line = ProcessLineQuery.find(env.params.url["process_line_id"])
 
       ProcessLine::DeleteOperation.delete!(process_line)
-
-      env.redirect path.admin_workshop_for(company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)
     end
   end
 end
