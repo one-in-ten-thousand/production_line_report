@@ -17,7 +17,6 @@ class CreateReports::V20220808172017 < Avram::Migrator::Migration::V1
     end
   end
 
-
   def rollback
     drop table_for(Report)
   end

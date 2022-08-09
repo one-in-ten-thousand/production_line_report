@@ -1,0 +1,55 @@
+<table>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>位置</th>
+      <th>不良原因</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% unqualified_products.each do |product| %>
+      <tr>
+        <td><%= product.name %></td>
+        <td><%= product.place.display_name %></td>
+        <td><%= product.reason.display_name %></td>
+        <td>
+          <a
+            class="modal-trigger"
+            href="#modal1"
+            data-url="<%= path.admin_unqualified_product_delete_for(unqualified_product_id: product.id) %>"
+            data-content="删除产品数据，<%= product.place.display_name %>, <%= product.reason.display_name %> ，确认？"
+          >
+            删除
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "返回", path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>
+
+
+<% content_for "company_name" do %>
+  <%= company.name %>
+<% end %>
+
+<% content_for "manufactory_name" do %>
+  <%= manufactory.name %>
+<% end %>
+
+<% content_for "workshop_name" do %>
+  <%= workshop.name %>
+<% end %>
+
+<% content_for "process_line_name" do %>
+  <%= process_line.name %>
+<% end %>
+
+<% content_for "report_name" do %>
+  <%= report.report_date %>
+<% end %>
