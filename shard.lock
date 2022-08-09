@@ -48,10 +48,6 @@ shards:
     git: https://github.com/kemalcr/kemal-basic-auth.git
     version: 1.0.0
 
-  kemal-session:
-    git: https://github.com/kemalcr/kemal-session.git
-    version: 1.0.0
-
   lucky_cache:
     git: https://github.com/luckyframework/lucky_cache.git
     version: 0.1.1
@@ -75,6 +71,10 @@ shards:
   shell-table:
     git: https://github.com/luckyframework/shell-table.cr.git
     version: 0.9.3
+
+  spec-kemal:
+    git: https://github.com/kemalcr/spec-kemal.git
+    version: 1.0.0
 
   splay_tree_map:
     git: https://github.com/wyhaines/splay_tree_map.cr.git
