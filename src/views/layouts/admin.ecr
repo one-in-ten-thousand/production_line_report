@@ -51,6 +51,15 @@
                 </span>
               </a>
             <% end %>
+
+            <% report_path = path.admin_report_for(report_id: env.params.url["report_id"]?, process_line_id: env.params.url["process_line_id"]?, workshop_id: env.params.url["workshop_id"]?, manufactory_id: env.params.url["manufactory_id"]?, company_id: env.params.url["company_id"]?) %>
+            <% if env.request.path.starts_with? report_path %>
+              <a href="<%= report_path %>" class="breadcrumb">
+                <span class="<%= env.request.path == report_path ? "black-text" : "" %>">
+                  <%= yield_content("report_name")  %>
+                </span>
+              </a>
+            <% end %>
           </div>
         </div>
       </nav>

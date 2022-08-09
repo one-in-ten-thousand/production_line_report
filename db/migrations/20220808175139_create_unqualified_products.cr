@@ -2,6 +2,7 @@ class CreateUnqualifiedProducts::V20220808175139 < Avram::Migrator::Migration::V
   def migrate
     create table_for(UnqualifiedProduct) do
       primary_key id : Int64
+      add name : String
       add place : Int32
       add reason : Int32
       add_belongs_to report : Report, on_delete: :cascade

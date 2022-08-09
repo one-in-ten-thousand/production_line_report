@@ -86,7 +86,7 @@ macro generate_nested_method(path, nested_ids)
   generate_url_method {{n1.id}}_edit, {{nested_ids.id}}
 
   getter {{n1.id}}_delete = "/{{n2.id}}/:{{singular_name.id}}_id/delete"
-  generate_url_method {{n1.id}}_delete, {{nested_ids.id}}
+  generate_url_method {{n1.id}}_delete, [] of String
 end
 
 struct RoutePath
@@ -95,4 +95,5 @@ struct RoutePath
   create_crud_path("workshop", "workshops", "admin", "companies/:company_id/manufactories/:manufactory_id")
   create_crud_path("process_line", "process_lines", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id")
   create_crud_path("report", "reports", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id/process_lines/:process_line_id")
+  create_crud_path("unqualified_product", "unqualified_products", "admin", "companies/:company_id/manufactories/:manufactory_id/workshops/:workshop_id/process_lines/:process_line_id/reports/:report_id")
 end

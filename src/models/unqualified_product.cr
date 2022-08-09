@@ -13,6 +13,7 @@ class UnqualifiedProduct < BaseModel
   end
 
   table do
+    column name : String
     column place : UnqualifiedProduct::Place
     column reason : UnqualifiedProduct::Reason
     belongs_to report : Report

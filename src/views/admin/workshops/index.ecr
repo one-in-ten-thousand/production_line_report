@@ -11,14 +11,14 @@
     <% workshops.each do |workshop| %>
       <tr>
         <td><%= link_to workshop.name, path.admin_workshop_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
-        <td><%= workshop.create_date %></td>
+        <td><%= workshop.creation_date %></td>
 
         <td><%= link_to "编辑", path.admin_workshop_edit_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td>
           <a
             class="modal-trigger"
             href="#modal1"
-            data-url="<%= path.admin_workshop_delete_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %>"
+            data-url="<%= path.admin_workshop_delete_for(workshop_id: workshop.id) %>"
             data-content="删除车间 <%= workshop.name %> 同时会删除下属的生产线，确认？"
           >
             删除

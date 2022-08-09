@@ -11,14 +11,14 @@
     <% process_lines.each do |process_line| %>
       <tr>
         <td><%= link_to process_line.name, path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
-        <td><%= process_line.create_date %></td>
+        <td><%= process_line.creation_date %></td>
 
         <td><%= link_to "编辑", path.admin_process_line_edit_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
         <td>
           <a
             class="modal-trigger"
             href="#modal1"
-            data-url="<%= path.admin_process_line_delete_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %>"
+            data-url="<%= path.admin_process_line_delete_for(process_line_id: process_line.id) %>"
             data-content="删除生产线 <%= process_line.name %>，确认？"
           >
             删除

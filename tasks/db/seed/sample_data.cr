@@ -23,47 +23,37 @@ class Db::Seed::SampleData < LuckyTask::Task
 
     manufactories = companies.map do |company|
       Array.new(rand(2..5)) do
-        ManufactoryFactory.create do |e|
-          e.company_id company.id
-        end
+        ManufactoryFactory.create &.company_id(company.id)
       end
     end.flatten
 
     workshops = manufactories.map do |manufactory|
       Array.new(rand(2..5)) do
-        WorkshopFactory.create do |e|
-          e.company_id manufactory.company.id
-          e.manufactory_id manufactory.id
-        end
+        WorkshopFactory.create &.company_id(manufactory.company_id)
+          .manufactory_id(manufactory.id)
       end
     end.flatten
 
     process_lines = workshops.map do |workshop|
       Array.new(rand(2..5)) do
-        ProcessLineFactory.create do |e|
-          e.company_id workshop.manufactory.company.id
-          e.manufactory_id workshop.manufactory.id
-          e.workshop_id workshop.id
-        end
+        ProcessLineFactory.create &.company_id(workshop.company_id)
+          .manufactory_id(workshop.manufactory_id)
+          .workshop_id(workshop.id)
       end
     end.flatten
 
     reports = process_lines.map do |process_line|
       Array.new(rand(2..5)) do
-        ReportFactory.create do |report|
-          report.company_id process_line.workshop.manufactory.company.id
-          report.manufactory_id process_line.workshop.manufactory.id
-          report.workshop_id process_line.workshop.id
-          report.process_line_id process_line.id
-        end
+        ReportFactory.create &.company_id(process_line.company_id)
+          .manufactory_id(process_line.manufactory_id)
+          .workshop_id(process_line.workshop_id)
+          .process_line_id(process_line.id)
       end
     end.flatten
 
-    unqualifed_products = reports.map do |report|
+    unqualified_products = reports.map do |report|
       Array.new(rand(5..10)) do
-        UnqualifiedProductFactory.create do |e|
-          e.report_id report.id
-        end
+        UnqualifiedProductFactory.create &.report_id(report.id)
       end
     end
 

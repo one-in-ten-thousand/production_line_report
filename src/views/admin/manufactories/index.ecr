@@ -11,14 +11,14 @@
     <% manufactories.each do |manufactory| %>
       <tr>
         <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
-        <td><%= manufactory.create_date %></td>
+        <td><%= manufactory.creation_date %></td>
 
         <td><%= link_to "编辑", path.admin_manufactory_edit_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td>
           <a
             class="modal-trigger"
             href="#modal1"
-            data-url="<%= path.admin_manufactory_delete_for(manufactory_id: manufactory.id, company_id: company.id) %>"
+            data-url="<%= path.admin_manufactory_delete_for(manufactory_id: manufactory.id) %>"
             data-content="删除工厂 <%= manufactory.name %> 同时会删除下属的车间、生产线，确认？"
           >
             删除
