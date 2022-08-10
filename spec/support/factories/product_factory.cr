@@ -1,6 +1,6 @@
 class ProductFactory < Avram::Factory
   def initialize
-    name sequence("Product")
+    name sequence("衣服")
     place_sample = Product::Place.values.sample
 
     place place_sample

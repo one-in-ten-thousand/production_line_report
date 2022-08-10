@@ -1,6 +1,6 @@
 class WorkshopFactory < Avram::Factory
   def initialize
-    name sequence("Workshop")
+    name sequence("车间")
 
     before_save do
       if operation.manufactory_id.value.nil?

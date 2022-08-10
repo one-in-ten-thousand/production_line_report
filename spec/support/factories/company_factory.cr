@@ -1,5 +1,5 @@
 class CompanyFactory < Avram::Factory
   def initialize
-    name sequence("Company")
+    name sequence("公司")
   end
 end

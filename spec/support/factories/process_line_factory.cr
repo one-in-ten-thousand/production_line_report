@@ -1,6 +1,6 @@
 class ProcessLineFactory < Avram::Factory
   def initialize
-    name sequence("ProcssLine")
+    name sequence("生产线")
 
     before_save do
       if operation.workshop_id.value.nil?
