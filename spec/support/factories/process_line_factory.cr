@@ -3,13 +3,17 @@ class ProcessLineFactory < Avram::Factory
     name sequence("生产线")
 
     before_save do
-      if operation.workshop_id.value.nil?
-        workshop = WorkshopFactory.create
+      id = operation.workshop_id.value
 
-        workshop_id workshop.id
-        manufactory_id workshop.manufactory.id
-        company_id workshop.manufactory.company.id
+      if id.nil?
+        workshop = WorkshopFactory.create
+      else
+        workshop = WorkshopQuery.new.find(id)
       end
+
+      workshop_id workshop.id
+      manufactory_id workshop.manufactory.id
+      company_id workshop.manufactory.company.id
     end
   end
 end

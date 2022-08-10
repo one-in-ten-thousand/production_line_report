@@ -1,6 +1,6 @@
 require "./spec_helper"
 
-describe "上传 Post 数据" do
+describe "上传产品数据" do
   it "上传数据成功" do
     path = RoutePath.new
     process_line = ProcessLineFactory.create
@@ -8,12 +8,7 @@ describe "上传 Post 数据" do
     manufactory = workshop.manufactory
     company = manufactory.company
 
-    url = path.admin_report_new_for(
-      process_line_id: process_line.id,
-      workshop_id: workshop.id,
-      manufactory_id: manufactory.id,
-      company_id: company.id
-    )
+    url = "/admin/process_lines/#{process_line.id}/products/new"
 
     post_json url, body: {
                 line_id: process_line.id,

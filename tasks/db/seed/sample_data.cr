@@ -30,30 +30,27 @@ class Db::Seed::SampleData < LuckyTask::Task
     workshops = manufactories.map do |manufactory|
       Array.new(rand(2..5)) do
         WorkshopFactory.create &.company_id(manufactory.company_id)
-          .manufactory_id(manufactory.id)
       end
     end.flatten
 
     process_lines = workshops.map do |workshop|
       Array.new(rand(2..5)) do
         ProcessLineFactory.create &.company_id(workshop.company_id)
-          .manufactory_id(workshop.manufactory_id)
-          .workshop_id(workshop.id)
       end
     end.flatten
 
-    reports = process_lines.map do |process_line|
-      Array.new(rand(2..5)) do
-        ReportFactory.create &.company_id(process_line.company_id)
-          .manufactory_id(process_line.manufactory_id)
-          .workshop_id(process_line.workshop_id)
-          .process_line_id(process_line.id)
-      end
-    end.flatten
+    # # reports = process_lines.map do |process_line|
+    # #   Array.new(rand(2..5)) do
+    # #     ReportFactory.create &.company_id(process_line.company_id)
+    # #       .manufactory_id(process_line.manufactory_id)
+    # #       .workshop_id(process_line.workshop_id)
+    # #       .process_line_id(process_line.id)
+    # #   end
+    # # end.flatten
 
-    products = reports.map do |report|
-      Array.new(rand(5..10)) do
-        ProductFactory.create &.report_id(report.id)
+    products = process_lines.map do |process_line|
+      Array.new(rand(82..95)) do
+        ProductFactory.create &.process_line_id(process_line.id)
       end
     end
 

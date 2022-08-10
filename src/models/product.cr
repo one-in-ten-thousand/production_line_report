@@ -37,6 +37,10 @@ class Product < BaseModel
     column name : String
     column place : Product::Place
     column reason : Product::Reason
-    belongs_to report : Report
+    column report_date : String
+    belongs_to process_line : ProcessLine
+    belongs_to workshop : Workshop
+    belongs_to manufactory : Manufactory
+    belongs_to company : Company
   end
 end

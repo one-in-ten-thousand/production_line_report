@@ -12,10 +12,24 @@ class ProductFactory < Avram::Factory
       reason Product::Reason.new(rand(1..(size-1)))
     end
 
+    time = Time.utc(2021, rand(7..12), rand(1..28))
+    date_str = time.to_s("%Y-%m-%d")
+
+    report_date date_str
+
     before_save do
-      if operation.report_id.value.nil?
-        report_id ReportFactory.create.id
+      id = operation.process_line_id.value
+
+      if id.nil?
+        process_line = ProcessLineFactory.create
+      else
+        process_line = ProcessLineQuery.new.find(id)
       end
+
+      process_line_id process_line.id
+      workshop_id process_line.workshop.id
+      manufactory_id process_line.workshop.manufactory.id
+      company_id process_line.workshop.manufactory.company.id
     end
   end
 end

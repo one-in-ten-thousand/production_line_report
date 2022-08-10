@@ -3,9 +3,15 @@ class ManufactoryFactory < Avram::Factory
     name sequence("工厂")
 
     before_save do
-      if operation.company_id.value.nil?
-        company_id CompanyFactory.create.id
+      id = operation.company_id.value
+
+      if id.nil?
+        company = CompanyFactory.create
+      else
+        company = CompanyQuery.new.find(id)
       end
+
+      company_id company.id
     end
   end
 end

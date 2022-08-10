@@ -8,7 +8,7 @@ class ReportFactory < Avram::Factory
     date_str = ""
 
     loop do
-      time = Time.utc(rand(2016..2021), rand(1..12), rand(1..28), rand(8..20), rand(1..59), rand(1..59))
+      time = Time.utc(rand(2020..2021), rand(1..12), rand(1..28), rand(8..20), rand(1..59), rand(1..59))
       date_str = time.to_s("%Y-%m-%d")
 
       break unless ReportQuery.new.report_date(date_str).first?
@@ -20,14 +20,18 @@ class ReportFactory < Avram::Factory
     report_week_num time.calendar_week[1]
 
     before_save do
-      if operation.process_line_id.value.nil?
-        process_line = ProcessLineFactory.create
+      id = operation.process_line_id.value
 
-        process_line_id process_line.id
-        workshop_id process_line.workshop.id
-        manufactory_id process_line.workshop.manufactory.id
-        company_id process_line.workshop.manufactory.company.id
+      if id.nil?
+        process_line = ProcessLineFactory.create
+      else
+        process_line = ProcessLineQuery.new.find(id)
       end
+
+      process_line_id process_line.id
+      workshop_id process_line.workshop.id
+      manufactory_id process_line.workshop.manufactory.id
+      company_id process_line.workshop.manufactory.company.id
     end
   end
 end
