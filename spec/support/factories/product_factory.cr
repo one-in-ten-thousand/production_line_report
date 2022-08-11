@@ -1,15 +1,15 @@
 class ProductFactory < Avram::Factory
   def initialize
     name sequence("衣服")
-    place_sample = Product::Place.values.sample
+    place_sample = Product::Place.values[1..-1].sample
+    place_sample = [Product::Place::None, place_sample].sample
 
-    place place_sample
+    place [Product::Place::None, place_sample].sample
 
     if place_sample.value == 0
       reason Product::Reason.new(0)
     else
-      size = Product::Reason.values.size
-      reason Product::Reason.new(rand(1..(size - 1)))
+      reason Product::Reason.values[1..-1].sample
     end
 
     before_save do

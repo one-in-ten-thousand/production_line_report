@@ -1,6 +1,7 @@
 require "./config/*"
 require "./graphql/query_type"
 require "./controllers/**"
+require "./helpers/**"
 
 private macro render_admin(filename)
   render "src/views/{{filename.id}}", "src/views/layouts/admin.ecr"

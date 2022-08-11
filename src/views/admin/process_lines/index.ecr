@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>名称</th>
       <th>创建时间</th>
       <th colspan="2"></th>
@@ -10,6 +11,7 @@
   <tbody>
     <% process_lines.each do |process_line| %>
       <tr>
+        <td><%= process_line.id %></td>
         <td><%= link_to process_line.name, path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id) %></td>
         <td><%= process_line.creation_date %></td>
 

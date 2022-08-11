@@ -5,7 +5,7 @@ class CreateReports::V20220808172017 < Avram::Migrator::Migration::V1
       add target_total_count : Int32
       add processed_total_count : Int32
       add qualified_total_count : Int32
-      add report_date : String, unique: true
+      add report_date : String
       add report_year_num : Int32, index: true
       add report_month_num : Int32, index: true
       add report_week_num : Int32, index: true
@@ -15,6 +15,8 @@ class CreateReports::V20220808172017 < Avram::Migrator::Migration::V1
       add_belongs_to company : Company, on_delete: :cascade
       add_timestamps
     end
+
+    create_index table_for(Report), [:report_date, :process_line_id], unique: true
   end
 
   def rollback

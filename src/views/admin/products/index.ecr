@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>名称</th>
       <th>位置</th>
       <th>不良原因</th>
@@ -11,6 +12,7 @@
   <tbody>
     <% products.each do |product| %>
       <tr>
+        <td><%= product.id %></td>
         <td><%= product.name %></td>
         <td><%= product.place.display_name %></td>
         <td><%= product.reason.display_name %></td>

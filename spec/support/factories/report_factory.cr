@@ -7,19 +7,21 @@ class ReportFactory < Avram::Factory
     time = Time.utc
     date_str = ""
 
-    loop do
-      time = Time.utc(rand(2020..2021), rand(1..12), rand(1..28), rand(8..20), rand(1..59), rand(1..59))
-      date_str = time.to_s("%Y-%m-%d")
-
-      break unless ReportQuery.new.report_date(date_str).first?
-    end
-
-    report_date date_str
-    report_year_num time.year
-    report_month_num time.month
-    report_week_num time.calendar_week[1]
-
     before_save do
+      if operation.report_date.value.nil?
+        loop do
+          time = Time.utc(rand(2020..2021), rand(1..12), rand(1..28), rand(8..20), rand(1..59), rand(1..59))
+          date_str = time.to_s("%Y-%m-%d")
+
+          break unless ReportQuery.new.report_date(date_str).first?
+        end
+
+        report_date date_str
+        report_year_num time.year
+        report_month_num time.month
+        report_week_num time.calendar_week[1]
+      end
+
       id = operation.process_line_id.value
 
       if id.nil?

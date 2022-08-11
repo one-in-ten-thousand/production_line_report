@@ -1,6 +1,7 @@
 <table class="highlight centered">
   <thead>
     <tr>
+      <th>ID</th>
       <th>名称</th>
       <th>创建时间</th>
       <th colspan="2"></th>
@@ -10,6 +11,7 @@
   <tbody>
     <% companies.each do |company| %>
       <tr>
+        <td><%= company.id %></td>
         <td><%= link_to company.name, path.admin_company_for(company_id: company.id) %></td>
         <td><%= company.creation_date %></td>
         <td><%= link_to "编辑", path.admin_company_edit_for(company_id: company.id) %></td>

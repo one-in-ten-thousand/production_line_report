@@ -1,15 +1,15 @@
-<h2>报告数量：<%= reports.size %></h2>
-
-<h2>最后 5 个报告</h2>
+<h2>报告总数：<%= reports.size %></h2>
 
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>报告日期</th>
       <th>目标产量</th>
       <th>车缝数</th>
       <th>良品数</th>
-      <th>不合格记录数量</th>
+      <th>合格率/不合格率</th>
+      <th>车缝完成率</th>
       <th colspan="1"></th>
     </tr>
   </thead>
@@ -17,11 +17,13 @@
   <tbody>
     <% reports.each do |report| %>
       <tr>
+        <td><%= report.id %></td>
         <td><%= report.report_date %></td>
         <td><%= report.target_total_count %></td>
-        <td><%= report.processed_total_count %></td>
+        <td><%= link_to report.processed_total_count, path.admin_product_index_for(report_id: report.id, process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)  %></td>
         <td><%= report.qualified_total_count %></td>
-        <td><%= link_to report.products.size, path.admin_product_index_for(report_id: report.id, process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)  %></td>
+        <td><%= ViewHelpers.percent(report.qualified_processed_rate) %>/<%= ViewHelpers.percent(report.unqualified_processed_rate) %></td>
+        <td><%= ViewHelpers.percent(report.processed_rate) %></td>
         <td>
           <a
             class="modal-trigger"

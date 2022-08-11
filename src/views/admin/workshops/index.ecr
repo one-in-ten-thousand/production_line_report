@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>名称</th>
       <th>创建时间</th>
       <th colspan="2"></th>
@@ -10,6 +11,7 @@
   <tbody>
     <% workshops.each do |workshop| %>
       <tr>
+        <td><%= workshop.id %></td>
         <td><%= link_to workshop.name, path.admin_workshop_for(workshop_id: workshop.id, manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td><%= workshop.creation_date %></td>
 

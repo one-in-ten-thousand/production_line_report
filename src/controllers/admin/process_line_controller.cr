@@ -15,26 +15,32 @@ module Admin::ProcessLineController
       manufactory = workshop.manufactory
       company = manufactory.company
       process_line = ProcessLineQuery.find(env.params.url["process_line_id"])
-      reports = process_line.reports
+      reports = ReportQuery.new.process_line_id(process_line.id)
       render_admin "admin/process_lines/show.ecr"
     end
 
     # 生成报告
     get "/admin/process_lines/:process_line_id/create_report" do |env|
-      process_line_id = env.params.url["process_line_id"]
+      process_line_id = env.params.url["process_line_id"].to_i64
 
       process_line = ProcessLineQuery.new.find(process_line_id)
       workshop = process_line.workshop
       manufactory = workshop.manufactory
       company = manufactory.company
-      reports = process_line.reports
-      products = ProductQuery.new.process_line_id(process_line_id).group(&.report_date).group_count
-      p! products
-      # process_line.products.each do |product|
+      process_line
+        .products
+        .group_by {|product| product.report_date }
+        .each do |report_date, products|
+        SaveReport.upsert!(
+          report_date: report_date,
+          process_line_id: process_line_id,
+          target_total_count: 50,
+          processed_total_count: products.size,
+          qualified_total_count: products.count { |e| e.place.value + e.reason.value == 0 },
+        )
+      end
 
-      # end
-      render_admin "admin/process_lines/show.ecr"
-      # render_admin "admin/process_lines/index.ecr"
+      env.redirect path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)
     end
 
     # 新记录

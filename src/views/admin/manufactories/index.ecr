@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>名称</th>
       <th>创建时间</th>
       <th colspan="2"></th>
@@ -10,6 +11,7 @@
   <tbody>
     <% manufactories.each do |manufactory| %>
       <tr>
+        <td><%= manufactory.id %></td>
         <td><%= link_to manufactory.name, path.admin_manufactory_for(manufactory_id: manufactory.id, company_id: company.id) %></td>
         <td><%= manufactory.creation_date %></td>
 
