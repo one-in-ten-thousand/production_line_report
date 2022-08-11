@@ -19,6 +19,24 @@ module Admin::ProcessLineController
       render_admin "admin/process_lines/show.ecr"
     end
 
+    # 生成报告
+    get "/admin/process_lines/:process_line_id/create_report" do |env|
+      process_line_id = env.params.url["process_line_id"]
+
+      process_line = ProcessLineQuery.new.find(process_line_id)
+      workshop = process_line.workshop
+      manufactory = workshop.manufactory
+      company = manufactory.company
+      reports = process_line.reports
+      products = ProductQuery.new.process_line_id(process_line_id).group(&.report_date).group_count
+      p! products
+      # process_line.products.each do |product|
+
+      # end
+      render_admin "admin/process_lines/show.ecr"
+      # render_admin "admin/process_lines/index.ecr"
+    end
+
     # 新记录
     get path.admin_process_line_new do |env|
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])

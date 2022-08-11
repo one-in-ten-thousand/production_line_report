@@ -1,4 +1,7 @@
-<h1><%= process_line.name %></h1>
+<div>
+  <h1><%= process_line.name %></h1>
+  <%= link_to "生成报告", "/admin/process_lines/#{process_line.id}/create_report" %>
+</div>
 
 <%= render "src/views/admin/reports/index.ecr" %>
 

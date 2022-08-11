@@ -48,7 +48,7 @@ module Admin::CompanyController
         name: env.params.body["company[name]"].as(String)
       }
 
-       SaveCompany.update(record, **params) do |operation, _|
+      SaveCompany.update(record, **params) do |operation, _|
         if operation.saved?
           env.redirect path.admin_company_index
         else

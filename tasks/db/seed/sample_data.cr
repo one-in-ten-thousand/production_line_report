@@ -22,37 +22,44 @@ class Db::Seed::SampleData < LuckyTask::Task
     companies = Array.new(3) { CompanyFactory.create }
 
     manufactories = companies.map do |company|
-      Array.new(rand(2..5)) do
+      Array.new(rand(2..3)) do
         ManufactoryFactory.create &.company_id(company.id)
       end
     end.flatten
 
     workshops = manufactories.map do |manufactory|
-      Array.new(rand(2..5)) do
-        WorkshopFactory.create &.company_id(manufactory.company_id)
+      Array.new(rand(2..3)) do
+        WorkshopFactory.create &.manufactory_id(manufactory.id)
       end
     end.flatten
 
     process_lines = workshops.map do |workshop|
-      Array.new(rand(2..5)) do
-        ProcessLineFactory.create &.company_id(workshop.company_id)
+      Array.new(rand(2..3)) do
+        ProcessLineFactory.create &.workshop_id(workshop.id)
       end
     end.flatten
 
-    # # reports = process_lines.map do |process_line|
-    # #   Array.new(rand(2..5)) do
-    # #     ReportFactory.create &.company_id(process_line.company_id)
-    # #       .manufactory_id(process_line.manufactory_id)
-    # #       .workshop_id(process_line.workshop_id)
-    # #       .process_line_id(process_line.id)
-    # #   end
-    # # end.flatten
+    start_time = Time.utc(2021, 11, 15)
+    days = (1..30).each_with_object([] of String) do |i, o|
+      o << start_time.shift(days: i).to_s("%Y-%m-%d")
+    end
 
     products = process_lines.map do |process_line|
-      Array.new(rand(82..95)) do
-        ProductFactory.create &.process_line_id(process_line.id)
+      days.each do |day|
+        Array.new(rand(83..100)) do
+          ProductFactory.create &.process_line_id(process_line.id).report_date(day)
+        end
       end
-    end
+    end.flatten
+
+    # reports = process_lines.map do |process_line|
+    #   Array.new(rand(2..5)) do
+    #     ReportFactory.create &.company_id(process_line.company_id)
+    #       .manufactory_id(process_line.manufactory_id)
+    #       .workshop_id(process_line.workshop_id)
+    #       .process_line_id(process_line.id)
+    #   end
+    # end.flatten
 
     puts "Done adding sample data"
   end

@@ -1,4 +1,6 @@
 ENV["APP_ENV"] = "test"
+ENV["APP_PORT"] = "3001"
+
 require "spec-kemal"
 require "../src/production_line_report"
 require "../spec/support/**"
@@ -12,15 +14,19 @@ end
 def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
   auth = Base64.encode("#{BASIC_AUTH_USERNAME}:#{BASIC_AUTH_PASSWORD}").chomp
   headers = HTTP::Headers.new if headers.nil?
-  body = body.to_json if ! body.nil?
+  body = body.to_json if !body.nil?
 
   headers.merge!(
     {
       "Authorization" => "Basic #{auth}",
-      "Accept" => "application/json",
-      "Content-Type" => "application/json",
+      "Accept"        => "application/json",
+      "Content-Type"  => "application/json",
     }
   )
 
   post(path, headers, body)
+end
+
+def json_body
+  Hash(String, String | JSON::Any).from_json(response.body)
 end

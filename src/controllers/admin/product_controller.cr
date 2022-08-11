@@ -13,19 +13,22 @@ module Admin::ProductController
     end
 
     post "/admin/process_lines/:process_line/products/new" do |env|
+      env.response.content_type = "application/json"
       json = env.params.json
 
       params = {
-
+        name: json["name"].as(String),
+        process_line_id: json["process_line_id"].as(Int64),
+        report_date: json["report_date"].as(String),
+        place: Product::Place.from_value(json["place"].as(Int64)),
+        reason: Product::Reason.from_value(json["reason"].as(Int64))
       }
-      # process_line = ProcessLineQuery.new.find(json["line_id"])
-      # line_id = json["line_id"]
+
       SaveProduct.create(**params) do |operation, product|
         if operation.saved?
-          {msg: 'ok', code: '0000'}.to_json
+          {msg: "ok", code: "0000"}.to_json
         else
-          errors = operation.errors
-          {msg: errors.to_json, code: '1111'}
+          {msg: operation.errors, code: "1111"}.to_json
         end
       end
     end

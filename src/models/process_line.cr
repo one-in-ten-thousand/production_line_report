@@ -7,9 +7,9 @@ class ProcessLine < BaseModel
     belongs_to workshop : Workshop
 
     has_many reports : Report
+    has_many products : Product
   end
 
   def qualified_rate
-
   end
 end

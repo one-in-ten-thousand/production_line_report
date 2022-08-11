@@ -8,12 +8,18 @@ describe "上传产品数据" do
     manufactory = workshop.manufactory
     company = manufactory.company
 
-    url = "/admin/process_lines/#{process_line.id}/products/new"
+    ProductQuery.new.size.should eq 0
 
-    post_json url, body: {
-                line_id: process_line.id,
-                report_date: "2022-08-08",
-              }
-    response.body.should eq "<h1>Hello</h1>"
+    post_json "/admin/process_lines/#{process_line.id}/products/new",
+      body: {
+        name:            "衬衣",
+        process_line_id: process_line.id,
+        report_date:     "2022-08-08",
+        place:           2,
+        reason:          2,
+      }
+
+    json_body.should eq({"msg" => "ok", "code" => "0000"})
+    ProductQuery.new.size.should eq 1
   end
 end
