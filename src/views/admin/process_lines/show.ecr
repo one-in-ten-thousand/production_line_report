@@ -1,6 +1,13 @@
 <div>
   <h1><%= process_line.name %></h1>
-  <%= link_to "生成报告", "/admin/process_lines/#{process_line.id}/create_report" %>
+  <a
+    class="modal-trigger"
+    href="#modal1"
+    data-url="/admin/process_lines/<%= process_line.id %>/create_reports"
+    data-content="重置所有报告，确认？"
+  >
+    生成报告
+  </a>
 </div>
 
 <%= render "src/views/admin/reports/index.ecr" %>

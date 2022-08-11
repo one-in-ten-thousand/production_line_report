@@ -19,30 +19,6 @@ module Admin::ProcessLineController
       render_admin "admin/process_lines/show.ecr"
     end
 
-    # 生成报告
-    get "/admin/process_lines/:process_line_id/create_report" do |env|
-      process_line_id = env.params.url["process_line_id"].to_i64
-
-      process_line = ProcessLineQuery.new.find(process_line_id)
-      workshop = process_line.workshop
-      manufactory = workshop.manufactory
-      company = manufactory.company
-      process_line
-        .products
-        .group_by {|product| product.report_date }
-        .each do |report_date, products|
-        SaveReport.upsert!(
-          report_date: report_date,
-          process_line_id: process_line_id,
-          target_total_count: 50,
-          processed_total_count: products.size,
-          qualified_total_count: products.count { |e| e.place.value + e.reason.value == 0 },
-        )
-      end
-
-      env.redirect path.admin_process_line_for(process_line_id: process_line.id, company_id: company.id, manufactory_id: manufactory.id, workshop_id: workshop.id)
-    end
-
     # 新记录
     get path.admin_process_line_new do |env|
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
@@ -104,7 +80,7 @@ module Admin::ProcessLineController
     end
 
     # 删除
-    delete path.admin_process_line_delete do |env|
+    post path.admin_process_line_delete do |env|
       process_line = ProcessLineQuery.find(env.params.url["process_line_id"])
 
       ProcessLine::DeleteOperation.delete!(process_line)

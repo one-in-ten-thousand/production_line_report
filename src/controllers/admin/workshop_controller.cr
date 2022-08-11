@@ -73,7 +73,7 @@ module Admin::WorkshopController
     end
 
     # 删除
-    delete path.admin_workshop_delete do |env|
+    post path.admin_workshop_delete do |env|
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
 
       Workshop::DeleteOperation.delete!(workshop)
