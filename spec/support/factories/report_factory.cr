@@ -11,7 +11,7 @@ class ReportFactory < Avram::Factory
       if operation.report_date.value.nil?
         loop do
           time = Time.utc(rand(2020..2021), rand(1..12), rand(1..28), rand(8..20), rand(1..59), rand(1..59))
-          date_str = time.to_s("%Y-%m-%d")
+          date_str = time.to_s("%F")
 
           break unless ReportQuery.new.report_date(date_str).first?
         end

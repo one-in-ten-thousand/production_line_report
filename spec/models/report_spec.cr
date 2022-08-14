@@ -33,4 +33,13 @@ describe Company do
     ManufactoryQuery.new.size.should eq 1
     WorkshopQuery.new.size.should eq 1
   end
+
+  it "覆盖 created_at" do
+    company = CompanyFactory.create
+    company.created_at.should_not be_nil
+    p! company.created_at
+
+    company1 = CompanyFactory.create &.created_at Time.parse_local("2022-08-14 22:10:10", "%F %T")
+    company1.created_at.should eq Time.parse_local("2022-08-14 22:10:10", "%F %T")
+  end
 end

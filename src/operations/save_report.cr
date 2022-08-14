@@ -4,7 +4,7 @@ class SaveReport < Report::SaveOperation
   before_save do
     validate_uniqueness_of report_date, message: "已经存在"
 
-    time = Time.parse_local(report_date.value.not_nil!, "%Y-%m-%d")
+    time = Time.parse_local(report_date.value.not_nil!, "%F")
     report_year_num.value = time.year
     report_month_num.value = time.month
     report_week_num.value = time.calendar_week[1]

@@ -41,13 +41,15 @@ class Db::Seed::SampleData < LuckyTask::Task
 
     start_time = Time.utc(2021, 11, 20)
     days = (1..20).each_with_object([] of String) do |i, o|
-      o << start_time.shift(days: i).to_s("%Y-%m-%d")
+      o << start_time.shift(days: i).to_s("%F")
     end
 
     products = process_lines.map do |process_line|
       days.each do |day|
         Array.new(rand(43..50)) do
-          ProductFactory.create &.process_line_id(process_line.id).report_date(day)
+          ProductFactory.create &.process_line_id(process_line.id)
+            .report_date(day)
+            .created_at(Time.parse_local(day, "%F"))
         end
       end
     end.flatten

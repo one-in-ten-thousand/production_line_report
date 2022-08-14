@@ -20,7 +20,8 @@ class ProductFactory < Avram::Factory
           o << start_time.shift(days: i)
         end.sample
 
-        report_date time.to_s("%Y-%m-%d")
+        report_date time.to_s("%F")
+        created_at time
       end
 
       id = operation.process_line_id.value
