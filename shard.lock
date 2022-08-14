@@ -14,7 +14,7 @@ shards:
 
   baked_file_system_mounter:
     git: https://github.com/zw963/baked_file_system_mounter.git
-    version: 0.5.0
+    version: 0.5.1
 
   cadmium_transliterator:
     git: https://github.com/cadmiumcr/transliterator.git
