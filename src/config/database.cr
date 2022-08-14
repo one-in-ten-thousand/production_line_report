@@ -6,8 +6,8 @@ require "../queries/**"
 require "../operations/**"
 require "../../db/migrations/**"
 
-app_port = ENV["APP_PORT"]? || "3000"
-app_name = ENV["APP_NAME"]? || "production_line_report"
+APP_PORT = (ENV["APP_PORT"]? || "3000").to_i
+APP_NAME = ENV["APP_NAME"]? || "production_line_report"
 APP_ENV = ENV["APP_ENV"]? || "development"
 postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
 postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
@@ -21,7 +21,7 @@ AppDatabase.configure do |settings|
   settings.credentials =
     Avram::Credentials.parse?(ENV["DATABASE_URL"]?) ||
       Avram::Credentials.new(
-        database: "#{app_name}_#{APP_ENV}",
+        database: "#{APP_NAME}_#{APP_ENV}",
         hostname: postgres_host,
         port: postgres_port,
         username: postgres_user,

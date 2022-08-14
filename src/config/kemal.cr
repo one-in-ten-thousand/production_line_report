@@ -16,4 +16,6 @@ end
 Kemal.config do |config|
   config.auth_handler = CustomAuthHandler
   config.env = APP_ENV
+  config.port = APP_PORT
+  config.app_name = APP_NAME
 end
