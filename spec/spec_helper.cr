@@ -11,6 +11,20 @@ Spec.before_each do
   AppDatabase.truncate
 end
 
+def query(query_path = "")
+  if query_path != ""
+    graphql_queries_path = "./spec/graphql_queries/#{query_path}.graphql"
+  else
+    graphql_queries_path = caller[2][/(.+?):\d+.*/, 1].gsub("graphql", "graphql_queries").gsub("_spec.cr", ".graphql")
+  end
+
+  if File.exists? graphql_queries_path
+    File.read(graphql_queries_path)
+  else
+    raise "`File #{graphql_queries_path}' not exists!"
+  end
+end
+
 def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
   auth = Base64.encode("#{BASIC_AUTH_USERNAME}:#{BASIC_AUTH_PASSWORD}").chomp
   headers = HTTP::Headers.new if headers.nil?

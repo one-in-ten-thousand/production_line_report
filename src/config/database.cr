@@ -8,7 +8,7 @@ require "../../db/migrations/**"
 
 APP_PORT = (ENV["APP_PORT"]? || "3000").to_i
 APP_NAME = ENV["APP_NAME"]? || "production_line_report"
-APP_ENV = ENV["APP_ENV"]? || "development"
+APP_ENV  = ENV["APP_ENV"]? || "development"
 postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
 postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
 postgres_user = ENV["POSTGRES_USER"]? || "postgres"
