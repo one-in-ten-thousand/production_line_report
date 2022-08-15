@@ -1,5 +1,4 @@
 require "./config/*"
-require "./graphql/query_type"
 require "./controllers/**"
 require "./helpers/**"
 

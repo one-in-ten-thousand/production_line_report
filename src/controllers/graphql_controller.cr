@@ -1,5 +1,3 @@
-require "../graphql/query_type"
-
 # curl \
 #   -X POST \
 #   -H "Content-Type: application/json" \

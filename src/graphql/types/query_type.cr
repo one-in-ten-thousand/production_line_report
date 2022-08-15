@@ -1,5 +1,3 @@
-require "graphql"
-
 @[GraphQL::Object]
 class Query < GraphQL::BaseQuery
   @[GraphQL::Field]
