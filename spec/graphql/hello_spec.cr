@@ -5,7 +5,7 @@ describe "test graphql is ok" do
     post_json "/graphql", body: {
       query: query,
     }
-    json_body.should eq(
+    json_response.should eq(
       {
         "data" => {
           "hello" => "Hello, Billy!",

@@ -1,0 +1,9 @@
+query {
+  reportQuery {
+    target {
+      targetTotalCount
+      processedTotalCount
+      qualifiedTotalCount
+    }
+  }
+}

@@ -2,6 +2,7 @@ ENV["APP_ENV"] = "test"
 ENV["APP_PORT"] = "3001"
 
 require "spec-kemal"
+require "hashr"
 require "../src/production_line_report"
 require "../spec/support/**"
 
@@ -41,6 +42,6 @@ def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
   post(path, headers, body)
 end
 
-def json_body
-  Hash(String, String | JSON::Any).from_json(response.body)
+def json_response
+  Hashr.new(Hash(String, JSON::Any).from_json(response.body))
 end

@@ -19,7 +19,7 @@ describe "上传产品数据" do
         reason:          2,
       }
 
-    json_body.should eq({"msg" => "ok", "code" => "0000"})
+    json_response.should eq({"msg" => "ok", "code" => "0000"})
     ProductQuery.new.size.should eq 1
   end
 end
