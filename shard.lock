@@ -40,6 +40,10 @@ shards:
     git: https://github.com/luckyframework/habitat.git
     version: 0.4.7
 
+  hashr:
+    git: https://github.com/zw963/hashr.git
+    version: 0.1.0
+
   kemal:
     git: https://github.com/kemalcr/kemal.git
     version: 1.2.0

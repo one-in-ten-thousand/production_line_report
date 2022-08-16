@@ -29,6 +29,9 @@ dependencies:
     version: 0.5.1
   graphql:
     github: graphql-crystal/graphql
+  hashr:
+    github: zw963/hashr
+    version: 0.1.0
 
 crystal: 1.5.0
 
