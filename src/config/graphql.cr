@@ -1,2 +1,5 @@
 require "graphql"
-require "../graphql/**"
+require "../graphql/types/**"
+require "../graphql/query_type"
+require "../graphql/mutation_type"
+require "../graphql/context"

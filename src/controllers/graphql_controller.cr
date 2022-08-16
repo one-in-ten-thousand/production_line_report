@@ -17,11 +17,11 @@ module GraphqlController
       variables = env.params.json["variables"]?.as(Hash(String, JSON::Any)?)
       operation_name = env.params.json["operationName"]?.as(String?)
 
-      schema = GraphQL::Schema.new(Query.new)
+      schema = GraphQL::Schema.new(Types::QueryType.new, Types::MutationType.new)
 
       # puts schema.document.to_s
 
-      schema.execute(query, variables, operation_name)
+      schema.execute(query, variables, operation_name, Context.new(Math::PI))
     end
   end
 end
