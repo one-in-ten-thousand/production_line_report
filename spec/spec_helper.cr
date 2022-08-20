@@ -40,6 +40,10 @@ def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
   )
 
   post(path, headers, body)
+
+  res = Hash(String, JSON::Any).from_json(response.body)
+
+  res.dig?("errors") && res.dig("errors").should be_nil
 end
 
 def json_response
