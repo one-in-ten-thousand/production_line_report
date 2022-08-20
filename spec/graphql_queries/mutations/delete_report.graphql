@@ -1,0 +1,8 @@
+mutation DeleteReport($id: String!){
+  deleteReport(
+      id: $id
+    ) {
+    code
+    msg
+  }
+}
