@@ -22,7 +22,7 @@ module Admin::CompanyController
     end
     post path.admin_company_new do |env|
       params = {
-        name: env.params.body["company[name]"].as(String)
+        name: env.params.body["company[name]"].as(String),
       }
 
       SaveCompany.create(**params) do |operation, _|
@@ -45,7 +45,7 @@ module Admin::CompanyController
     post path.admin_company_edit do |env|
       record = CompanyQuery.find(env.params.url["company_id"])
       params = {
-        name: env.params.body["company[name]"].as(String)
+        name: env.params.body["company[name]"].as(String),
       }
 
       SaveCompany.update(record, **params) do |operation, _|

@@ -5,11 +5,11 @@ module Admin::ProductController
       json = env.params.json
 
       params = {
-        name: json["name"].as(String),
+        name:            json["name"].as(String),
         process_line_id: json["process_line_id"].as(Int64),
-        report_date: json["report_date"].as(String),
-        place: Product::Place.from_value(json["place"].as(Int64)),
-        reason: Product::Reason.from_value(json["reason"].as(Int64))
+        report_date:     json["report_date"].as(String),
+        place:           Product::Place.from_value(json["place"].as(Int64)),
+        reason:          Product::Reason.from_value(json["reason"].as(Int64)),
       }
 
       SaveProduct.create(**params) do |operation, product|

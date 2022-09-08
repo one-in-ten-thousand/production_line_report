@@ -10,16 +10,16 @@ module Admin::ReportController
       company = manufactory.company
       process_line
         .products
-        .group_by {|product| product.report_date }
+        .group_by { |product| product.report_date }
         .each do |report_date, products|
-        SaveReport.upsert!(
-          report_date: report_date,
-          process_line_id: process_line_id,
-          target_total_count: 50,
-          processed_total_count: products.size,
-          qualified_total_count: products.count { |e| e.place.value + e.reason.value == 0 },
-        )
-      end
+          SaveReport.upsert!(
+            report_date: report_date,
+            process_line_id: process_line_id,
+            target_total_count: 50,
+            processed_total_count: products.size,
+            qualified_total_count: products.count { |e| e.place.value + e.reason.value == 0 },
+          )
+        end
     end
 
     # 删除

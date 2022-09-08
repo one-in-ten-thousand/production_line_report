@@ -34,10 +34,10 @@ module Admin::ProcessLineController
       manufactory = workshop.manufactory
       company = manufactory.company
       params = {
-        name: env.params.body["process_line[name]"].as(String),
-        company_id: company.id,
+        name:           env.params.body["process_line[name]"].as(String),
+        company_id:     company.id,
         manufactory_id: manufactory.id,
-        workshop_id: workshop.id
+        workshop_id:    workshop.id,
       }
 
       SaveProcessLine.create(**params) do |operation, process_line|
@@ -66,7 +66,7 @@ module Admin::ProcessLineController
       company = manufactory.company
       record = ProcessLineQuery.find(env.params.url["process_line_id"])
       params = {
-        name: env.params.body["process_line[name]"].as(String)
+        name: env.params.body["process_line[name]"].as(String),
       }
 
       SaveProcessLine.update(record, **params) do |operation, process_line|

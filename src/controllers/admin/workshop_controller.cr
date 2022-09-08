@@ -30,8 +30,8 @@ module Admin::WorkshopController
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
       company = manufactory.company
       params = {
-        name: env.params.body["workshop[name]"].as(String),
-        company_id: company.id,
+        name:           env.params.body["workshop[name]"].as(String),
+        company_id:     company.id,
         manufactory_id: manufactory.id,
       }
 
@@ -59,7 +59,7 @@ module Admin::WorkshopController
       company = manufactory.company
       record = WorkshopQuery.find(env.params.url["workshop_id"])
       params = {
-        name: env.params.body["workshop[name]"].as(String)
+        name: env.params.body["workshop[name]"].as(String),
       }
 
       SaveWorkshop.update(record, **params) do |operation, workshop|

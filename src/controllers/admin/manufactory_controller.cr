@@ -26,8 +26,8 @@ module Admin::ManufactoryController
     post path.admin_manufactory_new do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
       params = {
-        name: env.params.body["manufactory[name]"].as(String),
-        company_id: company.id
+        name:       env.params.body["manufactory[name]"].as(String),
+        company_id: company.id,
       }
 
       SaveManufactory.create(**params) do |operation, manufactory|
@@ -52,7 +52,7 @@ module Admin::ManufactoryController
       company = CompanyQuery.find(env.params.url["company_id"])
       record = ManufactoryQuery.find(env.params.url["manufactory_id"])
       params = {
-        name: env.params.body["manufactory[name]"].as(String)
+        name: env.params.body["manufactory[name]"].as(String),
       }
 
       SaveManufactory.update(record, **params) do |operation, manufactory|
