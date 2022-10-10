@@ -21,9 +21,6 @@ dependencies:
   avram:
     github: luckyframework/avram
     version: 1.0.0-rc1
-  teeplate:
-    github: luckyframework/teeplate
-    version: 0.8.5
   baked_file_system_mounter:
     github: zw963/baked_file_system_mounter
     version: 0.5.1
