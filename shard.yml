@@ -30,6 +30,6 @@ dependencies:
     github: zw963/hashr
     version: 0.1.0
 
-crystal: 1.5.0
+crystal: 1.6.0
 
 license: MIT
