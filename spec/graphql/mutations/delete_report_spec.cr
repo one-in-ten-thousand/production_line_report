@@ -2,8 +2,8 @@ require "../../spec_helper"
 
 describe "删除指定的 Report" do
   it "删除 Report" do
-    report1 = ReportFactory.create
-    report2 = ReportFactory.create
+    _report1 = ReportFactory.create
+    _report2 = ReportFactory.create
     report3 = ReportFactory.create
 
     ReportQuery.new.size.should eq 3

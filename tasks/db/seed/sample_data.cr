@@ -21,30 +21,30 @@ class Db::Seed::SampleData < LuckyTask::Task
 
     companies = Array.new(1) { CompanyFactory.create }
 
-    manufactories = companies.map do |company|
+    manufactories = companies.flat_map do |company|
       Array.new(2) do
         ManufactoryFactory.create &.company_id(company.id)
       end
-    end.flatten
+    end
 
-    workshops = manufactories.map do |manufactory|
+    workshops = manufactories.flat_map do |manufactory|
       Array.new(2) do
         WorkshopFactory.create &.manufactory_id(manufactory.id)
       end
-    end.flatten
+    end
 
-    process_lines = workshops.map do |workshop|
+    process_lines = workshops.flat_map do |workshop|
       Array.new(2) do
         ProcessLineFactory.create &.workshop_id(workshop.id)
       end
-    end.flatten
+    end
 
     start_time = Time.utc(2021, 11, 20)
     days = (1..20).each_with_object([] of String) do |i, o|
       o << start_time.shift(days: i).to_s("%F")
     end
 
-    products = process_lines.map do |process_line|
+    process_lines.flat_map do |process_line|
       days.each do |day|
         Array.new(rand(43..50)) do
           ProductFactory.create &.process_line_id(process_line.id)
@@ -52,7 +52,7 @@ class Db::Seed::SampleData < LuckyTask::Task
             .created_at(Time.parse_local(day, "%F"))
         end
       end
-    end.flatten
+    end
 
     puts "Done adding sample data"
   end

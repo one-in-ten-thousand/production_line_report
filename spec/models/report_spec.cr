@@ -7,7 +7,7 @@ describe Company do
     WorkshopQuery.new.size.should eq 0
     ProcessLineQuery.new.size.should eq 0
 
-    process_line = ProcessLineFactory.create
+    ProcessLineFactory.create
 
     CompanyQuery.new.size.should eq 1
     ManufactoryQuery.new.size.should eq 1
@@ -27,7 +27,7 @@ describe Company do
     CompanyQuery.new.size.should eq 1
     ManufactoryQuery.new.size.should eq 1
 
-    process_line = ProcessLineFactory.create &.workshop_id(workshop.id)
+    ProcessLineFactory.create &.workshop_id(workshop.id)
 
     CompanyQuery.new.size.should eq 1
     ManufactoryQuery.new.size.should eq 1

@@ -2,11 +2,10 @@ require "./spec_helper"
 
 describe "上传产品数据" do
   it "上传数据成功" do
-    path = RoutePath.new
     process_line = ProcessLineFactory.create
     workshop = process_line.workshop
     manufactory = workshop.manufactory
-    company = manufactory.company
+    manufactory.company
 
     ProductQuery.new.size.should eq 0
 

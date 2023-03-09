@@ -34,7 +34,7 @@ end
 Avram.configure do |settings|
   settings.database_to_migrate = AppDatabase
 
-  settings.lazy_load_enabled = APP_ENV == "production"
+  # settings.lazy_load_enabled = APP_ENV == "production"
 end
 
 if ENV["LUCKY_TASK"]? != "true"
