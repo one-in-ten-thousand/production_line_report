@@ -1,4 +1,4 @@
-ARG BUILD_IMAGE="crystallang/crystal:1.5.0-alpine-build"
+ARG BUILD_IMAGE="crystallang/crystal:1.7.2-alpine-build"
 
 FROM ${BUILD_IMAGE} AS dev
 
