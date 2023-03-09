@@ -9,7 +9,7 @@ module Admin::CompanyController
     # 详情页
     get path.admin_company do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
-      manufactories = company.manufactories
+      manufactories = CompanyQuery.preload_manufactories(company).manufactories
       render_admin "admin/companies/show.ecr"
     end
 

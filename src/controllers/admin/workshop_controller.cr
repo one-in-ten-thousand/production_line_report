@@ -11,24 +11,25 @@ module Admin::WorkshopController
     # 详情页
     get path.admin_workshop do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
+      company = ManufactoryQuery.preload_company(manufactory).company
       workshop = WorkshopQuery.find(env.params.url["workshop_id"])
-      process_lines = workshop.process_lines
+      process_lines = WorkshopQuery.preload_process_lines(workshop).process_lines
       render_admin "admin/workshops/show.ecr"
     end
 
     # 新记录
     get path.admin_workshop_new do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
+      company = ManufactoryQuery.preload_company(manufactory).company
       operation = SaveWorkshop.new
       errors = {} of Symbol => Array(String)
 
       render_admin "admin/workshops/new.ecr"
     end
+
     post path.admin_workshop_new do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
+      company = ManufactoryQuery.preload_company(manufactory).company
       params = {
         name:           env.params.body["workshop[name]"].as(String),
         company_id:     company.id,
@@ -48,7 +49,7 @@ module Admin::WorkshopController
     # 编辑
     get path.admin_workshop_edit do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
+      company = ManufactoryQuery.preload_company(manufactory).company
       operation = SaveWorkshop.new(WorkshopQuery.find(env.params.url["workshop_id"]))
       errors = {} of Symbol => Array(String)
 
@@ -56,7 +57,7 @@ module Admin::WorkshopController
     end
     post path.admin_workshop_edit do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      company = manufactory.company
+      company = ManufactoryQuery.preload_company(manufactory).company
       record = WorkshopQuery.find(env.params.url["workshop_id"])
       params = {
         name: env.params.body["workshop[name]"].as(String),
