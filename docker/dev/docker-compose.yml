@@ -1,14 +1,15 @@
 version: "3"
 services:
   app:
+    user: ${FIXUID:-1000}:${FIXGID:-1000}
     build:
       target: dev
     volumes:
       - .:/app
-  postgresql:
+  db:
     volumes:
-      - postgresql-data:/var/lib/postgresql/data
+      - pg-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
 volumes:
-  postgresql-data:
+  pg-data:
