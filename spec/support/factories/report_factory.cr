@@ -31,9 +31,9 @@ class ReportFactory < Avram::Factory
       end
 
       process_line_id process_line.id
-      workshop_id process_line.workshop.id
-      manufactory_id process_line.workshop.manufactory.id
-      company_id process_line.workshop.manufactory.company.id
+      workshop_id process_line.workshop_id
+      manufactory_id process_line.manufactory_id
+      company_id process_line.company_id
     end
   end
 end

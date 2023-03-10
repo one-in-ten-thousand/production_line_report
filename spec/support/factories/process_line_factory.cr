@@ -12,8 +12,8 @@ class ProcessLineFactory < Avram::Factory
       end
 
       workshop_id workshop.id
-      manufactory_id workshop.manufactory.id
-      company_id workshop.manufactory.company.id
+      manufactory_id workshop.manufactory_id
+      company_id workshop.company_id
     end
   end
 end

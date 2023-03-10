@@ -34,7 +34,13 @@ end
 Avram.configure do |settings|
   settings.database_to_migrate = AppDatabase
 
-  # settings.lazy_load_enabled = APP_ENV == "production"
+  case APP_ENV
+  when "production"
+    settings.lazy_load_enabled = true
+  when "development"
+    DB::Log.level = :debug
+    Avram::QueryLog.dexter.configure(:debug)
+  end
 end
 
 if ENV["LUCKY_TASK"]? != "true"

@@ -41,7 +41,12 @@ def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
 
   post(path, headers, body)
 
-  res = Hash(String, JSON::Any).from_json(response.body)
+  begin
+    res = Hash(String, JSON::Any).from_json(response.body)
+  rescue e : JSON::ParseException
+    File.write("failed_response_body.html", response.body)
+    raise e
+  end
 
   res.dig?("errors") && res.dig("errors").should be_nil
 end

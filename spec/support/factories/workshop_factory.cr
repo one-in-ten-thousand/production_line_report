@@ -12,7 +12,7 @@ class WorkshopFactory < Avram::Factory
       end
 
       manufactory_id manufactory.id
-      company_id manufactory.company.id
+      company_id manufactory.company_id
     end
   end
 end
