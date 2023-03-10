@@ -1,10 +1,10 @@
 require "pg"
 require "avram"
-require "../models/base_model"
-require "../models/**"
-require "../queries/**"
-require "../operations/**"
-require "../../db/migrations/**"
+require "../src/models/base_model"
+require "../src/models/**"
+require "../src/queries/**"
+require "../src/operations/**"
+require "../db/migrations/**"
 
 APP_PORT = (ENV["APP_PORT"]? || "3000").to_i
 APP_NAME = ENV["APP_NAME"]? || "production_line_report"
