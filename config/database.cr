@@ -36,11 +36,17 @@ Avram.configure do |settings|
 
   case APP_ENV
   when "production"
+    # In production, allow lazy loading (N+1).
+    # In development and test, raise an error if you forget to preload associations
     settings.lazy_load_enabled = true
-  when "development"
+  when "development", "test"
     DB::Log.level = :debug
     Avram::QueryLog.dexter.configure(:debug)
   end
+
+  # Always parse `Time` values with these specific formats.
+  # Used for both database values, and datetime input fields.
+  # settings.time_formats << "%F"
 end
 
 if ENV["LUCKY_TASK"]? != "true"

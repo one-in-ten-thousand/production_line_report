@@ -11,7 +11,7 @@ Lint/UnusedArgument:
   IgnoreBlocks: false
   IgnoreProcs: false
   Excluded:
-  - src/production_line_report.cr
+    - src/production_line_report.cr
   Enabled: true
   Severity: Warning
 
@@ -20,7 +20,7 @@ Lint/UnusedArgument:
 Lint/UselessAssign:
   Description: Disallows useless variable assignments
   Excluded:
-  - src/production_line_report.cr
+    - src/production_line_report.cr
   Enabled: true
   Severity: Warning
 
@@ -29,12 +29,12 @@ Lint/UselessAssign:
 Lint/DebugCalls:
   Description: Disallows debug-related calls
   MethodNames:
-  - p
-  - p!
-  - pp
-  - pp!
+    - p
+    - p!
+    - pp
+    - pp!
   Excluded:
-  - src/config/database.cr
+    - config/database.cr
   Enabled: true
   Severity: Warning
 
@@ -43,7 +43,7 @@ Lint/DebugCalls:
 Lint/NotNil:
   Description: Identifies usage of `not_nil!` calls
   Excluded:
-  - src/operations/save_report.cr
-  - src/operations/save_product.cr
+    - src/operations/save_report.cr
+    - src/operations/save_product.cr
   Enabled: true
   Severity: Warning

@@ -35,7 +35,7 @@ EXPOSE 3000
 
 USER docker:docker
 
-CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'bin/production_line_report'
+CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'bin/app'
 
 FROM dev AS build
 
@@ -44,9 +44,9 @@ COPY . /app
 RUN shards build --link-flags=-Wl,-z,relro,-z,now --progress --release --static
 
 FROM alpine as deploy
-COPY --from=build /app/bin/production_line_report /app/
+COPY --from=build /app/bin/app /app/
 COPY --from=dev /usr/local/bin/fixuid /app/
 # COPY --from=dev /usr/local/bin//wait-for /app/
 
-# ENTRYPOINT ["/app/wait-for", "postgresql:5432", "--", "/app/production_line_report"]
-ENTRYPOINT ["/app/production_line_report"]
+# ENTRYPOINT ["/app/wait-for", "postgresql:5432", "--", "/app/app"]
+ENTRYPOINT ["/app/app"]
