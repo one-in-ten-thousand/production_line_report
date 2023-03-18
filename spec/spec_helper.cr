@@ -1,56 +1,24 @@
-ENV["APP_ENV"] = "test"
-ENV["APP_PORT"] = "3001"
+ENV["LUCKY_ENV"] = "test"
+ENV["DEV_PORT"] = "5001"
+require "spec"
+require "lucky_flow"
+require "lucky_flow/ext/lucky"
+require "lucky_flow/ext/avram"
+require "../src/app"
+require "./support/flows/base_flow"
+require "./support/**"
+require "../db/migrations/**"
 
-require "spec-kemal"
-require "hashr"
-require "../src/production_line_report"
-require "../spec/support/**"
+# Add/modify files in spec/setup to start/configure programs or run hooks
+#
+# By default there are scripts for setting up and cleaning the database,
+# configuring LuckyFlow, starting the app server, etc.
+require "./setup/**"
+
+include Carbon::Expectations
+include Lucky::RequestExpectations
+include LuckyFlow::Expectations
 
 Avram::Migrator::Runner.new.ensure_migrated!
-
-Spec.before_each do
-  AppDatabase.truncate
-end
-
-def query(query_path = "")
-  if query_path != ""
-    graphql_queries_path = "./spec/graphql_queries/#{query_path}.graphql"
-  else
-    graphql_queries_path = caller[2][/(.+?):\d+.*/, 1].gsub("graphql", "graphql_queries").gsub("_spec.cr", ".graphql")
-  end
-
-  if File.exists? graphql_queries_path
-    File.read(graphql_queries_path)
-  else
-    raise "`File #{graphql_queries_path}' not exists!"
-  end
-end
-
-def post_json(path, *, headers : HTTP::Headers? = nil, body = nil)
-  auth = Base64.encode("#{BASIC_AUTH_USERNAME}:#{BASIC_AUTH_PASSWORD}").chomp
-  headers = HTTP::Headers.new if headers.nil?
-  body = body.to_json if !body.nil?
-
-  headers.merge!(
-    {
-      "Authorization" => "Basic #{auth}",
-      "Accept"        => "application/json",
-      "Content-Type"  => "application/json",
-    }
-  )
-
-  post(path, headers, body)
-
-  begin
-    res = Hash(String, JSON::Any).from_json(response.body)
-  rescue e : JSON::ParseException
-    File.write("failed_response_body.html", response.body)
-    raise e
-  end
-
-  res.dig?("errors") && res.dig("errors").should be_nil
-end
-
-def json_response
-  Hashr.new(Hash(String, JSON::Any).from_json(response.body))
-end
+Avram::SchemaEnforcer.ensure_correct_column_mappings!
+Habitat.raise_if_missing_settings!
