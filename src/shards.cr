@@ -5,4 +5,6 @@ LuckyEnv.load?(".env")
 # Require your shards here
 require "lucky"
 require "avram/lucky"
+
+# email library
 require "carbon"
