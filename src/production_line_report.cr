@@ -1,6 +1,4 @@
-require "../config/*"
-require "./controllers/**"
-require "./helpers/**"
+require "./app"
 
 private macro render_admin(filename)
   render "src/views/{{filename.id}}", "src/views/layouts/admin.ecr"

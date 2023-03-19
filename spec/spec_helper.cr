@@ -1,4 +1,4 @@
-ENV["APP_ENV"] = "test"
+ENV["LUCKY_ENV"] = "test"
 ENV["APP_PORT"] = "3001"
 
 require "spec-kemal"
