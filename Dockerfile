@@ -45,7 +45,7 @@ RUN shards build --link-flags=-Wl,-z,relro,-z,now --progress --release --static
 
 FROM alpine as deploy
 COPY --from=build /app/bin/app /app/
-COPY --from=dev /usr/local/bin/fixuid /app/
+# COPY --from=dev /usr/local/bin/fixuid /app/
 # COPY --from=dev /usr/local/bin//wait-for /app/
 
 # ENTRYPOINT ["/app/wait-for", "postgresql:5432", "--", "/app/app"]

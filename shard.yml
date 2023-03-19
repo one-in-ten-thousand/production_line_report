@@ -20,7 +20,7 @@ dependencies:
     version: 1.0.0
   avram:
     github: luckyframework/avram
-    version: 1.0.0-rc1
+    version: ~> 1.0.0
   baked_file_system_mounter:
     github: zw963/baked_file_system_mounter
     version: 0.5.1
@@ -29,6 +29,9 @@ dependencies:
   hashr:
     github: zw963/hashr
     version: 0.1.0
+  lucky_env:
+    github: luckyframework/lucky_env
+    version: ~> 0.1.4
 
 crystal: 1.7.2
 

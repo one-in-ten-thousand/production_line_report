@@ -9,24 +9,26 @@ require "../db/migrations/**"
 APP_PORT = (ENV["APP_PORT"]? || "3000").to_i
 APP_NAME = ENV["APP_NAME"]? || "production_line_report"
 APP_ENV  = ENV["APP_ENV"]? || "development"
-postgres_host = ENV["POSTGRES_HOST"]? || "localhost"
-postgres_port : Int32? = ENV["POSTGRES_PORT"]?.try(&.to_i) || 5432
-postgres_user = ENV["POSTGRES_USER"]? || "postgres"
-postgres_password = ENV["POSTGRES_PASSWORD"]? || "postgres"
 
 class AppDatabase < Avram::Database
 end
 
 AppDatabase.configure do |settings|
-  settings.credentials =
-    Avram::Credentials.parse?(ENV["DATABASE_URL"]?) ||
-      Avram::Credentials.new(
-        database: "#{APP_NAME}_#{APP_ENV}",
-        hostname: postgres_host,
-        port: postgres_port,
-        username: postgres_user,
-        password: postgres_password
-      )
+  if APP_ENV == "production"
+    settings.credentials = Avram::Credentials.parse(ENV["DATABASE_URL"])
+  else
+    settings.credentials =
+      Avram::Credentials.parse?(ENV["DATABASE_URL"]?) ||
+        Avram::Credentials.new(
+          database: "#{APP_NAME}_#{APP_ENV}",
+          hostname: ENV["DB_HOST"]? || "localhost",
+          port: ENV["DB_PORT"]?.try(&.to_i) || 5432,
+          # Some common usernames are "postgres", "root", or your system username (run 'whoami')
+          username: ENV["DB_USERNAME"]? || "postgres",
+          # Some Postgres installations require no password. Use "" if that is the case.
+          password: ENV["DB_PASSWORD"]? || "postgres"
+        )
+  end
   p! settings.credentials.database
   p! settings.credentials.url
 end
