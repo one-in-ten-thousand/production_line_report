@@ -30,8 +30,8 @@ dependencies:
     github: zw963/hashr
     version: 0.1.0
   lucky_env:
-    github: luckyframework/lucky_env
-    version: ~> 0.1.4
+    github: zw963/lucky_env
+    branch: main
 
 crystal: 1.7.2
 

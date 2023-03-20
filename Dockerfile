@@ -35,7 +35,7 @@ EXPOSE 3000
 
 USER docker:docker
 
-CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'wait-for db:5432 -- bin/app'
+CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'bin/app'
 
 FROM dev AS build
 
