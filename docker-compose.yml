@@ -1,48 +1,18 @@
-version: '3.8'
+version: "3"
 services:
-  lucky:
+  app:
     build:
       context: .
-      dockerfile: docker/development.dockerfile
+    ports:
+      - ${APP_PORT}:3000
     environment:
-      DATABASE_URL: postgres://lucky:password@postgres:5432/lucky
-      DEV_HOST: "0.0.0.0"
-    volumes:
-      - type: bind
-        source: .
-        target: /app
-      - type: volume
-        source: node_modules
-        target: /app/node_modules
-      - type: volume
-        source: shards_lib
-        target: /app/lib
+      DATABASE_URL: postgres://${DB_USERNAME}:${DB_PASSWORD}@db:${DB_PORT}/${DB_NAME}
     depends_on:
-      - postgres
-    ports:
-      - 3000:3000 # This is the Lucky Server port
-      - 3001:3001 # This is the Lucky watcher reload port
-
-    entrypoint: ["docker/dev_entrypoint.sh"]
-
-  postgres:
+      - db
+  db:
     image: postgres:14-alpine
+    privileged: true
     environment:
-      POSTGRES_USER: lucky
-      POSTGRES_PASSWORD: password
-    volumes:
-      - type: volume
-        source: postgres_data
-        target: /var/lib/postgresql
-    ports:
-      # The postgres database container is exposed on the host at port 6543 to
-      # allow connecting directly to it with postgres clients. The port differs
-      # from the postgres default to avoid conflict with existing postgres
-      # servers. Connect to a running postgres container with:
-      # postgres://lucky:password@localhost:6543/lucky
-      - 6543:5432
-
-volumes:
-  postgres_data:
-  node_modules:
-  shards_lib:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}

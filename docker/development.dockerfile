@@ -1,5 +1,11 @@
 FROM crystallang/crystal:1.7.2
 
+RUN echo 'deb https://mirrors.bfsu.edu.cn/ubuntu/ focal main restricted universe multiverse\n \
+    deb https://mirrors.bfsu.edu.cn/ubuntu/ focal-updates main restricted universe multiverse\n \
+    deb https://mirrors.bfsu.edu.cn/ubuntu/ focal-backports main restricted universe multiverse\n \
+    deb http://security.ubuntu.com/ubuntu/ focal-security main restricted universe multiverse\n \
+        ' > /etc/apt/sources.list
+
 # Install utilities required to make this Dockerfile run
 RUN apt-get update && \
     apt-get install -y wget

@@ -31,8 +31,8 @@ dependencies:
     github: luckyframework/carbon_sendgrid_adapter
     version: ~> 0.3.0
   lucky_env:
-    github: luckyframework/lucky_env
-    version: ~> 0.1.4
+    github: zw963/lucky_env
+    branch: main
   lucky_task:
     github: luckyframework/lucky_task
     version: ~> 0.1.1

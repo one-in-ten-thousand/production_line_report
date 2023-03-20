@@ -28,14 +28,14 @@ RUN USER=docker && \
     mkdir -p /etc/fixuid && \
     printf "user: $USER\ngroup: $GROUP\n" > /etc/fixuid/config.yml
 
-# Run wget https://github.com/eficode/wait-for/releases/download/v2.2.4/wait-for -o /usr/local/bin/wait-for && \
-#     chmod +x /usr/local/bin/wait-for
+Run wget https://github.com/eficode/wait-for/releases/download/v2.2.4/wait-for -o /usr/local/bin/wait-for && \
+    chmod +x /usr/local/bin/wait-for
 
 EXPOSE 3000
 
 USER docker:docker
 
-CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'bin/app'
+CMD fixuid sentry -b 'shards build && touch tmp/.success || (touch tmp/.error; exit 1)' -r 'wait-for db:5432 -- bin/app'
 
 FROM dev AS build
 
@@ -45,8 +45,7 @@ RUN shards build --link-flags=-Wl,-z,relro,-z,now --progress --release --static
 
 FROM alpine as deploy
 COPY --from=build /app/bin/app /app/
-COPY --from=dev /usr/local/bin/fixuid /app/
-# COPY --from=dev /usr/local/bin//wait-for /app/
+# COPY --from=dev /usr/local/bin/fixuid /app/
+COPY --from=dev /usr/local/bin/wait-for /app/
 
-# ENTRYPOINT ["/app/wait-for", "postgresql:5432", "--", "/app/app"]
-ENTRYPOINT ["/app/app"]
+ENTRYPOINT ["/app/wait-for", "postgresql:5432", "--", "/app/app"]

@@ -1,6 +1,3 @@
-# require "kemal"
-# require "kemal-basic-auth"
-
 # BASIC_AUTH_USERNAME = ENV["BASIC_AUTH_USERNAME"]? || "admin"
 # BASIC_AUTH_PASSWORD = ENV["BASIC_AUTH_PASSWORD"]? || "123456"
 
@@ -15,7 +12,7 @@
 
 # Kemal.config do |config|
 #   config.auth_handler = CustomAuthHandler
-#   config.env = APP_ENV
+#   config.env = LuckyEnv.environment
 #   config.port = APP_PORT
 #   config.app_name = APP_NAME
 # end

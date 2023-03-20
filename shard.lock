@@ -77,8 +77,8 @@ shards:
     version: 0.1.1
 
   lucky_env:
-    git: https://github.com/luckyframework/lucky_env.git
-    version: 0.1.4
+    git: https://github.com/zw963/lucky_env.git
+    version: 0.1.4+git.commit.b77999f161ac50029945d72ff23784b1db99b1b7
 
   lucky_flow:
     git: https://github.com/luckyframework/lucky_flow.git

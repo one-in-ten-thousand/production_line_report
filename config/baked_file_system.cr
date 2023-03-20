@@ -1,8 +1,6 @@
-require "baked_file_system_mounter"
-
 BakedFileSystemMounter.assemble(["public", "db"])
 
-if APP_ENV == "production"
+if LuckyEnv.production?
   STDERR.puts "Mounting from baked file system ..."
   BakedFileSystemStorage.mount
 end
