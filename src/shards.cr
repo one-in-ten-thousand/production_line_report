@@ -12,5 +12,8 @@ require "carbon"
 require "baked_file_system_mounter"
 require "graphql"
 
+require "authentic"
+require "jwt"
+
 # require "kemal"
 # require "kemal-basic-auth"

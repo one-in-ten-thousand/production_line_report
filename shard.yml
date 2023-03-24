@@ -36,6 +36,12 @@ dependencies:
   lucky_task:
     github: luckyframework/lucky_task
     version: ~> 0.1.1
+  authentic:
+    github: luckyframework/authentic
+    version: ~> 1.0.0
+  jwt:
+    github: crystal-community/jwt
+    version: ~> 1.6.0
   baked_file_system_mounter:
     github: zw963/baked_file_system_mounter
     version: 0.5.1
