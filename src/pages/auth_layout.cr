@@ -1,12 +1,8 @@
-abstract class MainLayout
+abstract class AuthLayout
   include Lucky::HTMLPage
 
   abstract def content
   abstract def page_title
-
-  # 'needs current_user : User' makes it so that the current_user
-  # is always required for pages using MainLayout
-  needs current_user : User
 
   # The default page title. It is passed to `Shared::LayoutHead`.
   #
