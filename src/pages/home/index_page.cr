@@ -1,5 +1,9 @@
 class Home::IndexPage < AuthLayout
   def content
-    h1 "Hello"
+    body do
+      h1 "Hello"
+
+      a "Login in", href: SignUps::New.path, class: "btn"
+    end
   end
 end

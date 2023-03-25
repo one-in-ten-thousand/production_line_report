@@ -1,5 +1,5 @@
 class User < BaseModel
-  # include Carbon::Emailable
+  include Carbon::Emailable
   include Authentic::PasswordAuthenticatable
 
   table do
@@ -7,7 +7,7 @@ class User < BaseModel
     column encrypted_password : String
   end
 
-  # def emailable : Carbon::Address
-  #   Carbon::Address.new(email)
-  # end
+  def emailable : Carbon::Address
+    Carbon::Address.new(email)
+  end
 end
