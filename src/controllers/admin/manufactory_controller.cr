@@ -1,12 +1,5 @@
 module Admin::ManufactoryController
   macro included
-    # 列表页
-    get path.admin_manufactory_index do |env|
-      company = CompanyQuery.find(env.params.url["company_id"])
-      manufactories = ManufactoryQuery.new
-      render_admin "admin/manufactories/index.ecr"
-    end
-
     # 详情页
     get path.admin_manufactory do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
