@@ -3,7 +3,7 @@ module Admin::ManufactoryController
     # 列表页
     get path.admin_manufactory_index do |env|
       company = CompanyQuery.find(env.params.url["company_id"])
-      manufactories = ManufactoryQuery.new
+      manufactories = ManufactoryQuery.new.company_id(company.id)
       render_admin "admin/manufactories/index.ecr"
     end
 

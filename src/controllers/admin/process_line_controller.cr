@@ -10,7 +10,7 @@ module Admin::ProcessLineController
 
     get path.admin_process_line_index do |env|
       company, manufactory, workshop = set_variable.call(env)
-      process_lines = ProcessLineQuery.new
+      process_lines = ProcessLineQuery.new.workshop_id(workshop.id)
       render_admin "admin/process_lines/index.ecr"
     end
 

@@ -3,8 +3,8 @@ module Admin::WorkshopController
     # 列表页
     get path.admin_workshop_index do |env|
       manufactory = ManufactoryQuery.find(env.params.url["manufactory_id"])
-      workshops = WorkshopQuery.new
       company = manufactory.company
+      workshops = WorkshopQuery.new.manufactory_id(manufactory.id)
       render_admin "admin/workshops/index.ecr"
     end
 
