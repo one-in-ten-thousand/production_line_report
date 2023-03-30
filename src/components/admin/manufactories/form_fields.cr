@@ -1,4 +1,4 @@
-class Manufactory::FormFields < BaseComponent
+class Admin::Manufactories::FormFields < BaseComponent
   needs operation : SaveManufactory
 
   def render

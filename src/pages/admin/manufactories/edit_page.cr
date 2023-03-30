@@ -8,7 +8,7 @@ class Admin::Manufactories::EditPage < MainLayout
     link "返回", Index.with(company_id: manufactory.company_id)
 
     form_for Update.with(manufactory_id: manufactory) do
-      mount Manufactory::FormFields, operation
+      mount FormFields, operation
 
       submit "提交", data_disable_with: "更新中 ..."
     end
