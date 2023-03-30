@@ -8,7 +8,7 @@ class Admin::Manufactories::NewPage < MainLayout
 
     form_for Create.with(company_id: company_id) do
       # Edit fields in src/components/fortunes/form_fields.cr
-      mount Manufactory::FormFields, operation
+      mount FormFields, operation
 
       submit "提交", data_disable_with: "保存中..."
     end

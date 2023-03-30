@@ -8,7 +8,7 @@ class Admin::Companies::NewPage < MainLayout
 
     form_for Create do
       # Edit fields in src/components/fortunes/form_fields.cr
-      mount Company::FormFields, operation
+      mount FormFields, operation
 
       submit "提交", data_disable_with: "保存中..."
     end

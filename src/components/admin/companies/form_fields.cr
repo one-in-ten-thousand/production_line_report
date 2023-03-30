@@ -1,4 +1,4 @@
-class Company::FormFields < BaseComponent
+class Admin::Companies::FormFields < BaseComponent
   needs operation : SaveCompany
 
   def render
