@@ -8,10 +8,6 @@ class Admin::Manufactories::IndexPage < MainLayout
 
     link "新工厂", to: New.with(company_id: company_id)
 
-    mount RecordList,
-      records: manufactories,
-      show: Show,
-      edit: Edit,
-      delete: Delete
+    mount ManufactoryList, records: manufactories
   end
 end

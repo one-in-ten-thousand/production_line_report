@@ -1,13 +1,15 @@
 class Admin::Manufactories::ShowPage < MainLayout
   needs manufactory : Manufactory
+  needs workshops : WorkshopQuery
 
   def content
     link "返回工厂列表", Index.with(company_id: manufactory.company_id)
     h1 manufactory.name
 
-    # link "新车间", to: Admin::Workshops::New.with(manufactory_id: manufactory_id)
+    link "新车间", to: Admin::Workshops::New.with(manufactory.id)
 
-    # mount Record
+    mount WorkshopList, records: workshops
+
     section do
       link "编辑", Edit.with(manufactory_id: manufactory.id)
       text " | "

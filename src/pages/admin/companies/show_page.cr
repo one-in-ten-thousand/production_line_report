@@ -9,11 +9,7 @@ class Admin::Companies::ShowPage < MainLayout
 
     link "新工厂", to: Admin::Manufactories::New.with(company_id: company.id)
 
-    mount RecordList,
-      records: manufactories,
-      show: Admin::Manufactories::Show,
-      edit: Admin::Manufactories::Edit,
-      delete: Admin::Manufactories::Delete
+    mount ManufactoryList, records: manufactories
 
     section do
       link "编辑", Edit.with(company_id: company.id)
