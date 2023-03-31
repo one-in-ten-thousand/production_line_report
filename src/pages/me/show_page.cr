@@ -1,4 +1,4 @@
-class Me::ShowPage < MainLayout
+class Me::ShowPage < AdminLayout
   def content
     h1 "This is your profile"
     h3 "Email:  #{@current_user.email}"

@@ -1,4 +1,4 @@
-class Admin::Workshops::EditPage < MainLayout
+class Admin::Workshops::EditPage < AdminLayout
   needs operation : SaveWorkshop
   needs workshop : Workshop
   quick_def page_title, "编辑车间 ID: #{workshop.id}"

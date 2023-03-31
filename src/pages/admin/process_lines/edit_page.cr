@@ -1,4 +1,4 @@
-class Admin::ProcessLines::EditPage < MainLayout
+class Admin::ProcessLines::EditPage < AdminLayout
   needs operation : SaveProcessLine
   needs process_line : ProcessLine
   quick_def page_title, "编辑生产线 ID: #{process_line.id}"

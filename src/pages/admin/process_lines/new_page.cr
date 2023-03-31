@@ -1,4 +1,4 @@
-class Admin::ProcessLines::NewPage < MainLayout
+class Admin::ProcessLines::NewPage < AdminLayout
   needs operation : SaveProcessLine
   needs workshop_id : String
   quick_def page_title, "新的产品线"

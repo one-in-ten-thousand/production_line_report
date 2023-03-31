@@ -1,4 +1,4 @@
-class Admin::Companies::IndexPage < MainLayout
+class Admin::Companies::IndexPage < AdminLayout
   needs companies : CompanyQuery
   quick_def page_title, "公司列表"
 

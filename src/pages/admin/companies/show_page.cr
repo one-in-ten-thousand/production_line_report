@@ -1,4 +1,4 @@
-class Admin::Companies::ShowPage < MainLayout
+class Admin::Companies::ShowPage < AdminLayout
   needs company : Company
   needs manufactories : ManufactoryQuery
   quick_def page_title, "详情"

@@ -1,4 +1,4 @@
-class Admin::Manufactories::ShowPage < MainLayout
+class Admin::Manufactories::ShowPage < AdminLayout
   needs manufactory : Manufactory
   needs workshops : WorkshopQuery
 

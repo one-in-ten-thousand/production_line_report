@@ -1,4 +1,4 @@
-class Admin::Companies::EditPage < MainLayout
+class Admin::Companies::EditPage < AdminLayout
   needs operation : SaveCompany
   needs company : Company
   quick_def page_title, "编辑公司 ID: #{company.id}"

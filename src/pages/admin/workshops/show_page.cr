@@ -1,4 +1,4 @@
-class Admin::Workshops::ShowPage < MainLayout
+class Admin::Workshops::ShowPage < AdminLayout
   needs workshop : Workshop
   needs process_lines : ProcessLineQuery
   quick_def page_title, "车间 ID: #{workshop.id}"

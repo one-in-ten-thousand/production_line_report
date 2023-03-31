@@ -1,4 +1,4 @@
-class Admin::ProcessLines::ShowPage < MainLayout
+class Admin::ProcessLines::ShowPage < AdminLayout
   needs process_line : ProcessLine
   quick_def page_title, "产品线 ID: #{process_line.id}"
 

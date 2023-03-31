@@ -1,4 +1,4 @@
-class Admin::Companies::NewPage < MainLayout
+class Admin::Companies::NewPage < AdminLayout
   needs operation : SaveCompany
   quick_def page_title, "新增公司"
 

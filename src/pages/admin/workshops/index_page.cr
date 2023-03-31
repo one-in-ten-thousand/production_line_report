@@ -1,4 +1,4 @@
-class Admin::Workshops::IndexPage < MainLayout
+class Admin::Workshops::IndexPage < AdminLayout
   needs workshops : WorkshopQuery
   needs manufactory_id : String
   quick_def page_title, "所有车间"

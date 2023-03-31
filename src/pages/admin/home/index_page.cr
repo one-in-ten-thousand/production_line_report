@@ -1,4 +1,4 @@
-class Admin::Home::IndexPage < MainLayout
+class Admin::Home::IndexPage < AdminLayout
   needs name : String
 
   def content

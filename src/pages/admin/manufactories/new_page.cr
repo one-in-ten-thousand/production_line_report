@@ -1,4 +1,4 @@
-class Admin::Manufactories::NewPage < MainLayout
+class Admin::Manufactories::NewPage < AdminLayout
   needs operation : SaveManufactory
   needs company_id : String
   quick_def page_title, "新的工厂"

@@ -1,4 +1,4 @@
-class Admin::ProcessLines::IndexPage < MainLayout
+class Admin::ProcessLines::IndexPage < AdminLayout
   needs process_lines : ProcessLineQuery
   needs workshop_id : String
   quick_def page_title, "所有生产线"

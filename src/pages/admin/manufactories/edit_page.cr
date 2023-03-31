@@ -1,4 +1,4 @@
-class Admin::Manufactories::EditPage < MainLayout
+class Admin::Manufactories::EditPage < AdminLayout
   needs operation : SaveManufactory
   needs manufactory : Manufactory
   quick_def page_title, "编辑工厂 #{manufactory.id}"

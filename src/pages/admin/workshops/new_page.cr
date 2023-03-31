@@ -1,4 +1,4 @@
-class Admin::Workshops::NewPage < MainLayout
+class Admin::Workshops::NewPage < AdminLayout
   needs operation : SaveWorkshop
   needs manufactory_id : String
   quick_def page_title, "新的车间"

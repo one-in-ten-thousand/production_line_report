@@ -1,4 +1,4 @@
-class Admin::Manufactories::IndexPage < MainLayout
+class Admin::Manufactories::IndexPage < AdminLayout
   needs manufactories : ManufactoryQuery
   needs company_id : String
   quick_def page_title, "工厂列表"
