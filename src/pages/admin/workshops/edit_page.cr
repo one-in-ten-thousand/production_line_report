@@ -1,20 +1,17 @@
 class Admin::Workshops::EditPage < MainLayout
   needs operation : SaveWorkshop
   needs workshop : Workshop
-  quick_def page_title, "Edit Workshop with id: #{workshop.id}"
+  quick_def page_title, "编辑车间 ID: #{workshop.id}"
 
   def content
-    link "Back to all Workshops", Index.with(workshop.manufactory_id)
-    h1 "Edit Workshop with id: #{workshop.id}"
-    render_workshop_form(operation)
-  end
+    link "所有车间", Index.with(workshop.manufactory_id)
 
-  def render_workshop_form(op)
+    h1 page_title
+
     form_for Update.with(workshop.id) do
-      # Edit fields in src/components/admin/workshops/form_fields.cr
-      mount FormFields, op
+      mount FormFields, operation
 
-      submit "Update", data_disable_with: "Updating..."
+      submit "修改", data_disable_with: "更新中..."
     end
   end
 end

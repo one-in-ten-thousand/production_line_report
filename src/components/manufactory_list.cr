@@ -28,7 +28,7 @@ class ManufactoryList < BaseComponent
             end
 
             td do
-              link "删除", Admin::Workshops::Delete.with(record.id), data_confirm: "确认？"
+              link "删除", Admin::Workshops::Delete.with(record.id), data_confirm: "删除工厂 #{record.name} 同时会删除下属的车间、生产线，确认？"
             end
           end
         end

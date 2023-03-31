@@ -4,13 +4,14 @@ class Admin::Companies::EditPage < MainLayout
   quick_def page_title, "编辑公司 ID: #{company.id}"
 
   def content
+    link "所有公司", Index
+
     h1 "编辑公司"
-    link "返回", Index
 
     form_for Update.with(company) do
       mount FormFields, operation
 
-      submit "提交", data_disable_with: "更新中..."
+      submit "修改", data_disable_with: "更新中..."
     end
   end
 end

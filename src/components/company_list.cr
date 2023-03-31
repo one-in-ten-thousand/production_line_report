@@ -1,5 +1,5 @@
-class WorkshopList < BaseComponent
-  needs records : WorkshopQuery
+class CompanyList < BaseComponent
+  needs records : CompanyQuery
 
   def render
     table class: "highlight centered" do
@@ -18,17 +18,17 @@ class WorkshopList < BaseComponent
             td record.id
 
             td do
-              link record.name, Admin::Workshops::Show.with(record)
+              link record.name, Admin::Companies::Show.with(record)
             end
 
             td record.creation_date
 
             td do
-              link "编辑", Admin::Workshops::Edit.with(record.id)
+              link "编辑", Admin::Companies::Edit.with(record.id)
             end
 
             td do
-              link "删除", Admin::Workshops::Delete.with(record.id), data_confirm: "删除车间 #{record.name} 同时会删除下属的生产线，确认？"
+              link "删除", Admin::Companies::Delete.with(record.id), data_confirm: "删除公司 #{record.name} 同时会删除下属的工厂、车间、生产线，确认？"
             end
           end
         end

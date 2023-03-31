@@ -4,7 +4,7 @@ class Admin::Manufactories::IndexPage < MainLayout
   quick_def page_title, "工厂列表"
 
   def content
-    h1 "工厂列表"
+    h1 page_title
 
     link "新工厂", to: New.with(company_id: company_id)
 

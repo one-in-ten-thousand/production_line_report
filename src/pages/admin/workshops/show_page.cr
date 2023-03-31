@@ -1,28 +1,27 @@
 class Admin::Workshops::ShowPage < MainLayout
   needs workshop : Workshop
-  quick_def page_title, "Workshop with id: #{workshop.id}"
+  needs process_lines : ProcessLineQuery
+  quick_def page_title, "车间 ID: #{workshop.id}"
 
   def content
-    link "Back to all Workshops", Index.with(workshop.manufactory_id)
-    h1 "Workshop with id: #{workshop.id}"
-    render_actions
-    render_workshop_fields
-  end
+    link "返回车间列表", Index.with(workshop.manufactory_id)
 
-  def render_actions
+    h1 page_title
+
+    link "新产品线", to: Admin::ProcessLines::New.with(workshop.id)
+    mount ProcessLineList, records: process_lines
+
     section do
-      link "Edit", Edit.with(workshop.id)
+      link "编辑", Edit.with(workshop.id)
       text " | "
-      link "Delete",
+      link "删除",
         Delete.with(workshop.id),
-        data_confirm: "Are you sure?"
+        data_confirm: "确认?"
     end
-  end
 
-  def render_workshop_fields
     ul do
       li do
-        text "name: "
+        text "名称: "
         strong workshop.name.to_s
       end
     end
