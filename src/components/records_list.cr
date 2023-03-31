@@ -1,8 +1,8 @@
 class RecordList < BaseComponent
-  needs records : ManufactoryQuery
-  needs show : Admin::Manufactories::Show.class
-  needs edit : Admin::Manufactories::Edit.class
-  needs delete : Admin::Manufactories::Delete.class
+  needs records : ManufactoryQuery | WorkshopQuery
+  needs show : Admin::Manufactories::Show.class | Admin::Workshops::Show.class
+  needs edit : Admin::Manufactories::Edit.class | Admin::Workshops::Edit.class
+  needs delete : Admin::Manufactories::Delete.class | Admin::Workshops::Delete.class
 
   def render
     table class: "highlight centered" do
@@ -16,22 +16,22 @@ class RecordList < BaseComponent
       end
 
       tbody do
-        records.each do |manufactory|
+        records.each do |record|
           tr do
-            td manufactory.id
+            td record.id
 
             td do
-              link manufactory.name, show.with(manufactory.id)
+              link record.name, show.with(record)
             end
 
-            td manufactory.creation_date
+            td record.creation_date
 
             td do
-              link "编辑", edit.with(manufactory.id)
+              link "编辑", edit.with(record.id)
             end
 
             td do
-              link "删除", delete.with(manufactory.id), data_confirm: "确认？"
+              link "删除", delete.with(record.id), data_confirm: "确认？"
             end
           end
         end
