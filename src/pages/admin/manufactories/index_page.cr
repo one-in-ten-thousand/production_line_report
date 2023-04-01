@@ -6,7 +6,7 @@ class Admin::Manufactories::IndexPage < AdminLayout
   def content
     h1 page_title
 
-    link "新工厂", to: New.with(company_id: company_id)
+    link "新工厂", to: New.with(company_id)
 
     mount ManufactoryList, records: manufactories
   end

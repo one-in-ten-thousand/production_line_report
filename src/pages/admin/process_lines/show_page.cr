@@ -1,9 +1,9 @@
 class Admin::ProcessLines::ShowPage < AdminLayout
   needs process_line : ProcessLine
-  quick_def page_title, "产品线 ID: #{process_line.id}"
+  quick_def page_title, "生产线 ID: #{process_line.id}"
 
   def content
-    link "所有产品线", Index.with(process_line.workshop_id)
+    link "所有生产线", Index.with(process_line.workshop_id)
 
     h1 page_title
 

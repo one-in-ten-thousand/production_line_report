@@ -8,7 +8,7 @@ class Admin::Workshops::ShowPage < AdminLayout
 
     h1 page_title
 
-    link "新产品线", to: Admin::ProcessLines::New.with(workshop.id)
+    link "新生产线", to: Admin::ProcessLines::New.with(workshop.id)
     mount ProcessLineList, records: process_lines
 
     section do

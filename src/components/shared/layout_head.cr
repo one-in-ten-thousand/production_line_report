@@ -4,11 +4,11 @@ class Shared::LayoutHead < BaseComponent
   def render
     head do
       utf8_charset
+      responsive_meta_tag
       title "Product Line Report - #{@page_title}"
       css_link asset("css/app.css")
       js_link asset("js/app.js"), defer: "true"
       csrf_meta_tags
-      responsive_meta_tag
 
       # Development helper used with the `lucky watch` command.
       # Reloads the browser when files are updated.

@@ -1,10 +1,10 @@
 class Admin::ProcessLines::NewPage < AdminLayout
   needs operation : SaveProcessLine
   needs workshop_id : String
-  quick_def page_title, "新的产品线"
+  quick_def page_title, "新的生产线"
 
   def content
-    link "所有产品线", Index.with(workshop_id)
+    link "所有生产线", Index.with(workshop_id)
 
     h1 page_title
 
