@@ -3,7 +3,7 @@ class Admin::Companies::NewPage < AdminLayout
   quick_def page_title, "新增公司"
 
   def content
-    link "所有公司", Index
+    a "返回", href: previous_url(fallback: Index)
 
     h1 page_title
 
