@@ -93,9 +93,11 @@ abstract class AdminLayout
                   company_show_url = Admin::Companies::Show.with(company_id)
                 end
 
-                # # if responds_to?(:company)
-                # #   company
-                # # end
+                # debug!(100)
+                # if responds_to?(:company)
+                #   puts "1"*100
+                #   debug!(100)
+                # end
 
                 if company_show_url || manufactory_show_url || workshop_show_url || process_line_show_url
                   build_breadcrumb_link(company.not_nil!.name, company_show_url.not_nil!)
