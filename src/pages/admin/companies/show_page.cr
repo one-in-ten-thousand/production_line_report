@@ -10,7 +10,12 @@ class Admin::Companies::ShowPage < AdminLayout
 
     link "新工厂", to: Admin::Manufactories::New.with(company_id: company.id)
 
-    mount ManufactoryList, records: manufactories
+    mount RecordList,
+      records: manufactories,
+      show: Admin::Manufactories::Show,
+      edit: Admin::Manufactories::Edit,
+      delete: Admin::Manufactories::Delete,
+      delete_msg: "删除工厂同时会删除下属的车间、生产线，确认？"
 
     section do
       link "编辑", Edit.with(company_id: company.id)

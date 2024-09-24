@@ -9,7 +9,13 @@ class Admin::Workshops::ShowPage < AdminLayout
     h1 page_title
 
     link "新生产线", to: Admin::ProcessLines::New.with(workshop.id)
-    mount ProcessLineList, records: process_lines
+
+    mount RecordList,
+      records: process_lines,
+      show: Admin::ProcessLines::Show,
+      edit: Admin::ProcessLines::Edit,
+      delete: Admin::ProcessLines::Delete,
+      delete_msg: "删除生产线，确认？"
 
     section do
       link "编辑", Edit.with(workshop.id)

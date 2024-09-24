@@ -8,6 +8,11 @@ class Admin::ProcessLines::IndexPage < AdminLayout
 
     link "新生产线", New.with(workshop_id)
 
-    mount ProcessLineList, records: process_lines
+    mount RecordList,
+      records: process_lines,
+      show: Admin::ProcessLines::Show,
+      edit: Admin::ProcessLines::Edit,
+      delete: Admin::ProcessLines::Delete,
+      delete_msg: "删除生产线，确认？"
   end
 end

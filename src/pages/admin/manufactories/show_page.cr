@@ -9,7 +9,12 @@ class Admin::Manufactories::ShowPage < AdminLayout
 
     link "新车间", to: Admin::Workshops::New.with(manufactory.id)
 
-    mount WorkshopList, records: workshops
+    mount RecordList,
+      records: workshops,
+      show: Admin::Workshops::Show,
+      edit: Admin::Workshops::Edit,
+      delete: Admin::Workshops::Delete,
+      delete_msg: "删除车间同时会删除下属的生产线，确认？"
 
     section do
       link "编辑", Edit.with(manufactory_id: manufactory.id)
